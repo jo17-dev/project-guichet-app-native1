@@ -33,6 +33,10 @@ public class Client {
         return codeClient;
     }
 
+    public int getNIP() {
+        return numeroNIP;
+    }
+
     // toString
     @Override
     public String toString() {
