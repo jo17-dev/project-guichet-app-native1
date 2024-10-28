@@ -1,17 +1,17 @@
-public class Banque {
+public class Banque extends Compte {
 
     private double montantMaximum;
     private double montantRemplissage;
 
     // Constructeur
-    public Banque(double montantMaximum, double montantRemplissage) {
+    public Banque(int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum, double montantMaximum, double montantRemplissage) {
+        super(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
         this.montantMaximum = montantMaximum;
         this.montantRemplissage = montantRemplissage;
     }
 
     // Remplir Guichet 
     public void remplirGuichet() {
-
     }
 
     // toString 
