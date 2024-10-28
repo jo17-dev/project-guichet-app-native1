@@ -33,8 +33,10 @@ public class Client {
         return codeClient;
     }
 
-    public int getNIP() {
-        return numeroNIP;
+    // checkNIP
+    
+    public boolean checkNIP(int numeroNIP) {
+        return (this.numeroNIP == numeroNIP);
     }
 
     // toString
