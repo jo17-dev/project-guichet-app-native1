@@ -45,6 +45,10 @@ public class Compte {
         soldeCompte = newSolde;
     }
 
+    public double getmontantTransfertMaximum(){
+        return montantTransfertMaximum;
+    }
+
     public String toString(){
         return "Compte ( NumeroCompte: "+ numeroCompte + ", codeClient: " + codeClient + ", soldeCompte: "+ soldeCompte + ", retraitMaximum: "+ retraitMaximum + ", montantTransfertMaximum: " + montantTransfertMaximum + " )" ;
     }
