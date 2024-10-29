@@ -162,5 +162,29 @@ public class GestionnaireGuichet {
         Cheque tmp = new Cheque(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
         comptesCheque.add(tmp);
     }
+
+    
+    public void preleverMontantdeHypothecaire(int numeroCompteDepart, int codeClient, double montantAPrelever){
+        for(Hypothecaire item : comHypothecaire){
+            if(numeroCompteDepart == item.getNumeroCompte()){
+                if(item.getSolde() < montantAPrelever){
+                    System.out.println("Montant insufisant. tentative de prelevement dans le compte marge");
+                    double montantCourant = item.getSolde();
+                    // recherche du compte marge
+                    for(Marge cpt : comptesMarge){
+                        if(cpt.getNumeroCompte() == numeroCompteDepart){
+                            // si on trouve le compte marge
+                            cpt.augumenterSoldeMarge(montantAPrelever - montantCourant);
+                            item.setSolde(0);
+                            System.out.println("prelevement du compte marge. réussi. transaction faite");
+                            return ;
+                        }
+                    }
+                    System.out.println("On a pas trouve de compte marge à votre nom");
+                    return ;
+                }
+            }
+        }
+    }
     
 }
