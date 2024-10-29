@@ -41,6 +41,10 @@ public class Compte {
         return soldeCompte;
     }
 
+    public void setSolde(double newSolde){
+        soldeCompte = newSolde;
+    }
+
     public String toString(){
         return "Compte ( NumeroCompte: "+ numeroCompte + ", codeClient: " + codeClient + ", soldeCompte: "+ soldeCompte + ", retraitMaximum: "+ retraitMaximum + ", montantTransfertMaximum: " + montantTransfertMaximum + " )" ;
     }

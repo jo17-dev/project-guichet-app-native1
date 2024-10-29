@@ -10,7 +10,7 @@ public class Marge extends Compte {
 
     // Augumenter solde marge
     public void augumenterSoldeMarge(double pourcentage) {
-        solde += (solde*(pourcentage/100));
+        setSolde(getSolde() + getSolde()*tauxInteret/100);
     }
 
     // ToString
