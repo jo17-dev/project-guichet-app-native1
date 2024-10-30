@@ -50,6 +50,7 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){
             if(item.getCodeClient() == codeClient){
                 item.retrait(montant);
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
                 break;
             }
         }
@@ -59,6 +60,7 @@ public class GestionnaireGuichet {
         for(Epargne item : comptesEpargne){
             if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
                 item.retrait(montant);
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
                 break;
             }else{
                 System.out.println("On a pas trouve le compte correspondant");
@@ -70,6 +72,7 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){
             if(item.getCodeClient() == codeClient){
                 item.depot(montant);
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
                 break;
             }
         }
@@ -80,6 +83,7 @@ public class GestionnaireGuichet {
         for(Epargne item : comptesEpargne){
             if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
                 item.depot(montant);
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
                 break;
             }else{
                 System.out.println("On a pas trouvé le compte");
@@ -92,6 +96,7 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){ // de toute façon on boucle sur les compte cheque soo..
             if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
                 item.paiementFacture(montant);
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, banque, "paiement")); // le paiement de facture se fait à la banque pour que'elle traite de sont cotéavac les partenaires
                 break;
             }else{
                 System.out.println("On a pas trouvé le client");
@@ -107,18 +112,19 @@ public class GestionnaireGuichet {
                 compteDepart = item;
             }
         }
-
+        // if we dont find, we just stop the program and print an error
         if(compteDepart == null){
-            System.out.println("le compte n'a pas ete trouve");
+            System.out.println("votre compte cheque n'a pas ete trouve");
             return ;
         }
 
-        switch (typeCompte) {
+        switch (typeCompte.toLowerCase()) {
             case "epargne":
                 for(Epargne item : comptesEpargne){
                     if(item.getNumeroCompte() == numeroCompteDestination){
                         compteDepart.setSolde(compteDepart.getSolde() - montant);
                         item.setSolde(item.getSolde() + montant);
+                        transactions.add( new Transaction(Transaction.nbreTransaction, montant, compteDepart, item, "transfert"));
                         return ;
                     }
                 }
@@ -128,6 +134,7 @@ public class GestionnaireGuichet {
                     if(item.getNumeroCompte() == numeroCompteDestination){
                         compteDepart.setSolde(compteDepart.getSolde() - montant);
                         item.setSolde(item.getSolde() + montant);
+                        transactions.add( new Transaction(Transaction.nbreTransaction, montant, compteDepart, item, "transfert"));
                         return ;
                     }
                 }
@@ -137,12 +144,13 @@ public class GestionnaireGuichet {
                 if(item.getNumeroCompte() == numeroCompteDestination){
                     compteDepart.setSolde(compteDepart.getSolde() - montant);
                     item.setSolde(item.getSolde() + montant);
+                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, compteDepart, item, "transfert"));
                     return ;
                 }
             }
                 break;
             default:
-                System.out.println("typde de compte non pris en charge pour les transfert");
+                System.out.println("type de compte non pris en charge pour les transfert");
                 break;
         }
     }

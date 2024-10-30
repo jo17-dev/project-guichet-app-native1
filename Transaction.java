@@ -5,6 +5,8 @@ public class Transaction {
     private Compte compte;
     private Compte compteTransfert;
     private String type;
+    
+    public static int nbreTransaction = 0;
 
     // Constructeur
 
