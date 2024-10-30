@@ -11,6 +11,7 @@ public class GestionnaireGuichet {
     private double soldeCompteCourant;
 
     private int nbreTentative;
+    private int nbreTentativeMax=3;
 
     // contructeur
     public GestionnaireGuichet(Compte banque, ArrayList<Client> clients, ArrayList<Cheque> comptesCheque,
@@ -31,13 +32,17 @@ public class GestionnaireGuichet {
     // valider utilisateur
     public Client validerUtilisateur(String codeClient, int nip){
         nbreTentative++;
+        if(nbreTentative > nbreTentativeMax){
+            System.out.println("vous n'avez plus droit aux tentatives");
+            return null;
+        }
         for(Client item : clients){
             if(item.getCodeClient().equals(codeClient) && item.checkNIP(nip)){
                 nbreTentative = 0;
                 return item;
             }
         }
-
+        System.out.println("Echec de l'authentification. " + (nbreTentative<nbreTentativeMax ? "Réessayez !" : " Vous avez épuiser les trois essais"));
         return null;
     }
 
@@ -160,8 +165,9 @@ public class GestionnaireGuichet {
     }
 
     // creer client est une methode destiné à l'admin uniquement. il faudrai donc trouver un moyen de l'authenfier
+    // On pourrai utiliser la methode checkAdmin de l'object client qui vas initier cette methode avant son appel ( oui, j'ai ajouté un boolean estAdmin hahaha)
     public void creerClient(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP){
-        Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP);
+        Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, false);
         clients.add(tmp);
     }
 

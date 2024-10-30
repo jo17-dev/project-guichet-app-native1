@@ -8,8 +8,9 @@ public class Client {
     private String telephone;
     private String courriel;
     private int numeroNIP;
+    private boolean estAdmin;
 
-    // Constructeur
+    // Constructeur ( Pour creer un client normal)
     public Client(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP){
         this.codeClient = codeClient;
         this.nom = nom;
@@ -17,6 +18,18 @@ public class Client {
         this.telephone = telephone;
         this.courriel = courriel;
         this.numeroNIP = numeroNIP;
+        estAdmin = false;
+    }
+
+    // Constructeur ( Pour crer un client ou un Admin, dépendament du dernier parametre )
+    public Client(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP, boolean estAdmin){
+        this.codeClient = codeClient;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.telephone = telephone;
+        this.courriel = courriel;
+        this.numeroNIP = numeroNIP;
+        this.estAdmin = estAdmin;
     }
 
     // Getters
@@ -37,6 +50,10 @@ public class Client {
     
     public boolean checkNIP(int numeroNIP) {
         return (this.numeroNIP == numeroNIP);
+    }
+
+    public boolean checkAdmin(){
+        return estAdmin;
     }
 
     // toString
