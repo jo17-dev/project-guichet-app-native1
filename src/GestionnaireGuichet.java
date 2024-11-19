@@ -97,8 +97,8 @@ public class GestionnaireGuichet {
     }
 
     /*paiement de facture d'un compte cheque vers un autre de compte de numée "numeroCompte" montant */
-    public void paiementFacture(int codeClient, int numeroCompte, double montant){ // je pense que numeroCompte n'est pas nécéssaire.. par ce que tout paiement de facture se fait via le compte cheque dans se cas
-        for(Cheque item : comptesCheque){ // de toute façon on boucle sur les compte cheque soo..
+    public void paiementFacture(int codeClient, int numeroCompte, double montant){ 
+        for(Cheque item : comptesCheque){
             if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
                 item.paiementFacture(montant);
                 transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, banque, "paiement")); // le paiement de facture se fait à la banque pour que'elle traite de sont cotéavac les partenaires
@@ -110,14 +110,13 @@ public class GestionnaireGuichet {
     }
 
     public void transfertFonds(int codeClient, double montant, String typeCompte, int numeroCompteDestination){
-        // 1st step find the current cheque Account
         Cheque compteDepart = null;
         for(Cheque item : comptesCheque){
             if(item.getCodeClient() == codeClient){
                 compteDepart = item;
             }
         }
-        // if we dont find, we just stop the program and print an error
+        
         if(compteDepart == null){
             System.out.println("votre compte cheque n'a pas ete trouve");
             return ;
@@ -160,12 +159,12 @@ public class GestionnaireGuichet {
         }
     }
 
-    public void afficheSoldeCompte(){
-        System.out.println(soldeCompteCourant);
+    public double afficheSoldeCompte(){
+        return soldeCompteCourant;
     }
 
     // creer client est une methode destiné à l'admin uniquement. il faudrai donc trouver un moyen de l'authenfier
-    // On pourrai utiliser la methode checkAdmin de l'object client qui vas initier cette methode avant son appel ( oui, j'ai ajouté un boolean estAdmin hahaha)
+    // On pourrai utiliser la methode checkAdmin de l'object client qui vas initier cette methode avant son appel
     public void creerClient(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP){
         Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, false);
         clients.add(tmp);
