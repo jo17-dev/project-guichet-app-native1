@@ -1,3 +1,5 @@
+package backend;
+
 public class Hypothecaire extends Compte {
 
     public Hypothecaire(int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum) {

@@ -1,3 +1,5 @@
+package backend;
+
 public class Cheque extends Compte {
     public Cheque(int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum){
         super(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);// montantRetrait=1000

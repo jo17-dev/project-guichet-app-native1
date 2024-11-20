@@ -1,3 +1,5 @@
+package backend;
+
 public class Compte {
     private int numeroCompte;
     private int codeClient;

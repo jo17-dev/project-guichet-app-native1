@@ -1,3 +1,5 @@
+package backend;
+
 public class Banque extends Compte {
 
     private double montantMaximum;

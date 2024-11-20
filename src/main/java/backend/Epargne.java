@@ -1,3 +1,5 @@
+package backend;
+
 public class Epargne extends Compte {
     private double tauxInteret; // doit etre entre 0 et 100 !
 

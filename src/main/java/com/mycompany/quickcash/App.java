@@ -13,17 +13,25 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private static Scene sceneConnexionClient;
+    private static Scene sceneConnexionAdmin;
+    static Stage stageConnexionAdmin;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("clientLogin"), 640, 480);
-        stage.setScene(scene);
+        sceneConnexionClient = new Scene(loadFXML("clientLogin"), 720, 450);
+        stage.setScene(sceneConnexionClient);
         stage.show();
+        
+        
+        stageConnexionAdmin = new Stage();
+        sceneConnexionClient = new Scene(loadFXML("adminLogin"), 720, 450);
+        stageConnexionAdmin.setScene(sceneConnexionClient);
+        stageConnexionAdmin.show();
     }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+    
+    public static void setRoot(String fxml, Scene target) throws IOException {
+        target.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

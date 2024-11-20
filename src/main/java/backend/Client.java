@@ -1,3 +1,6 @@
+
+package backend;
+
 /**
  * Client
  */
@@ -44,6 +47,10 @@ public class Client {
 
     public String getCodeClient() {
         return codeClient;
+    }
+    
+    public String getCouriel(){
+        return courriel;
     }
 
     // checkNIP
