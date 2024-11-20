@@ -1,5 +1,6 @@
 package com.mycompany.quickcash;
 
+import guicomponent.ElementListe;
 import backend.Client;
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class AdminListeClientsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // 1st etape: recupération des données de touts les clients de gestionnaire guichers
        listeClients = new ArrayList<>();
-       for(int i=0; i< 4; i++){
+       for(int i=0; i< 11; i++){
         listeClients.add(new Client("00"+i, 
                 "nomClient "+i, 
                 "prenomClient "+i,
