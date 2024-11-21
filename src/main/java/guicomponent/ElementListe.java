@@ -59,9 +59,9 @@ public abstract class ElementListe extends GridPane {
         // TODO: il faut que le grid s'étende sur toute le ligne
 //        super.setMinHeight(GridPane.);
 //        super.setAlignment(Pos.CENTER);
-        super.setWidth(GridPane.USE_COMPUTED_SIZE);
+//        super.setWidth(GridPane.USE_COMPUTED_SIZE);
         super.setStyle("-fx-border-width: 1px 0px 0px 0px;-fx-border-color: #2b3385; -fx-padding: 4px");
-//        super.setGridLinesVisible(true);
+        super.setGridLinesVisible(false);
         super.setHgap(10);
         GridPane.setHalignment(boutonVoir, HPos.RIGHT);
        
