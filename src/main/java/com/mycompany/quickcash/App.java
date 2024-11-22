@@ -14,7 +14,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene sceneConnexionClient;
-    private static Scene sceneConnexionAdmin;
+    public static Scene sceneConnexionAdmin;
     static Stage stageConnexionAdmin;
 
     @Override

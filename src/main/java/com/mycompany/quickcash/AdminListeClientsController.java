@@ -2,11 +2,14 @@ package com.mycompany.quickcash;
 
 import guicomponent.ElementListe;
 import backend.Client;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 
 /**
@@ -40,7 +43,24 @@ public class AdminListeClientsController implements Initializable {
            itemContainer.getChildren().add(new ElementListe(item) {
                @Override
                protected void setAction1() {
-                   System.out.println("action 1");
+                   try{
+                       System.out.println("yooooo + " );
+                       System.out.println("yooooo + " + (itemContainer.getScene() == App.sceneConnexionAdmin ? "yesss" : "Noooo"));
+                       App.setRoot("adminInformationsClient", itemContainer.getScene());
+                        
+                   } catch (IOException ex) {
+                        // TODO faire un popup qui affiche que le systeme vas s'arreter
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur interne");
+                        alert.setContentText("Nous notons une erreur interne. Revenez plus tard !");
+
+
+
+                        alert.showAndWait();
+                        System.out.println("IOException. arret du systeme");
+                        System.out.println(ex.getMessage());
+                        System.exit(1);
+                   }
                }
 
                @Override

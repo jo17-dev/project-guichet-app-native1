@@ -53,7 +53,14 @@ public abstract class ElementListe extends GridPane {
         boutonVoir.setStyle(boutonBleuStyle);
         boutonBloquer.setStyle(boutonRougeStyle);
         
+        // 4th etape: assigner les évenements DANS L'ORDRE (Voir-> action1, entendre-> action2)
+        boutonVoir.setOnMouseClicked(event ->{
+            setAction1();
+        });
         
+        boutonBloquer.setOnMouseClicked(event ->{
+            setAction2();
+        });
         
         // stylisation du gridPane
         // TODO: il faut que le grid s'étende sur toute le ligne
