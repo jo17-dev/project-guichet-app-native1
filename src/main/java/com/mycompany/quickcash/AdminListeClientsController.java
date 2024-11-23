@@ -46,6 +46,7 @@ public class AdminListeClientsController implements Initializable {
                    try{
                        System.out.println("yooooo + " );
                        System.out.println("yooooo + " + (itemContainer.getScene() == App.sceneConnexionAdmin ? "yesss" : "Noooo"));
+                       AdminInformationsClientController.cible = item;
                        App.setRoot("adminInformationsClient", itemContainer.getScene());
                         
                    } catch (IOException ex) {
