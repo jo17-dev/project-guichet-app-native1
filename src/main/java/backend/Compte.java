@@ -2,12 +2,12 @@ package backend;
 
 public class Compte {
     private int numeroCompte;
-    private int codeClient;
+    private String codeClient;
     private double soldeCompte;
     private double retraitMaximum;
     private double montantTransfertMaximum; // nécéssaire ?
 
-    public Compte(int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum) {
+    public Compte(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum) {
         this.numeroCompte = numeroCompte;
         this.codeClient = codeClient;
         this.soldeCompte = soldeCompte;
@@ -31,7 +31,7 @@ public class Compte {
         }
     }
 
-    public int getCodeClient(){
+    public String getCodeClient(){
         return codeClient;
     }
 

@@ -6,7 +6,7 @@ public class Banque extends Compte {
     private double montantRemplissage;
 
     // Constructeur
-    public Banque(int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum, double montantMaximum, double montantRemplissage) {
+    public Banque(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum, double montantMaximum, double montantRemplissage) {
         super(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
         this.montantMaximum = montantMaximum;
         this.montantRemplissage = montantRemplissage;

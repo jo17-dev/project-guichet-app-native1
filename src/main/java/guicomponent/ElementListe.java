@@ -1,6 +1,11 @@
 package guicomponent;
 
+import backend.Cheque;
 import backend.Client;
+import backend.Compte;
+import backend.Epargne;
+import backend.Hypothecaire;
+import backend.Marge;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -80,6 +85,76 @@ public abstract class ElementListe extends GridPane {
         }
 //        super.setHgap(5);
         
+    }
+    
+    
+    // Constructeur pour la view des comptes sur admin
+    public ElementListe(Compte target){
+        super();
+        cible = target;
+        double nombreDivisions = 3;
+        
+        String boutonBleuStyle = "-fx-background-color:  #2b3385; -fx-text-fill: #ffffff";
+        String boutonRougeStyle = "-fx-background-color:  #942F2F; -fx-text-fill: #ffffff";
+        
+        Button boutonVoir = new Button("Consulter");
+        Button boutonPrelever =new Button("Prelever");
+        
+        // determinaison du type de compte:
+        String typeCompte = "Cheque";
+        
+        if(target instanceof Epargne){
+            typeCompte = "epargne";
+        }else if(target instanceof Hypothecaire){
+            typeCompte = "hypothecaire";
+        }else if(target instanceof Marge){
+            typeCompte = "marge";
+        }
+        
+        super.add(new Label("Compte "+typeCompte + "("+target.getNumeroCompte()+")"), 0, 0);
+        super.add(new Label("Solde: "+ target.getSolde() + " $"), 1, 0);
+
+        super.add(boutonVoir, 2, 0);
+        if(typeCompte.equals("hypothecaire")){
+            super.add(boutonPrelever, 3, 0);
+//            nombreDivisions = 4;
+        }else{
+            super.add(new Label(""), 3, 0);
+        }
+        
+        
+        
+        
+        // 3th etape: ajouter les styles
+        
+        boutonVoir.setStyle(boutonBleuStyle);
+        boutonPrelever.setStyle(boutonRougeStyle);
+        
+        // 4th etape: assigner les évenements DANS L'ORDRE (prelever-> action1, voir/consulter-> action2)
+        boutonVoir.setOnMouseClicked(event ->{
+            setAction2();
+        });
+        
+        boutonPrelever.setOnMouseClicked(event ->{
+            setAction1();
+        });
+        
+        
+        super.setStyle("-fx-border-width: 1px 0px 0px 0px;-fx-border-color: #2b3385; -fx-padding: 4px");
+        super.setGridLinesVisible(false);
+        super.setHgap(10);
+       
+        
+        for(int i=0; i< nombreDivisions-1; i++){
+            ColumnConstraints columnCons = new ColumnConstraints();
+            columnCons.setPercentWidth(100/nombreDivisions);
+            super.getColumnConstraints().add(columnCons);
+        }
+//        GridPane.setHalignment(boutonVoir, HPos.LEFT);
+//        GridPane.setFillWidth(boutonVoir, true);
+//        GridPane.setFillWidth(boutonPrelever, true);
+//        GridPane.setHalignment(boutonPrelever, HPos.RIGHT);
+        GridPane.setHalignment(boutonVoir, HPos.RIGHT);
     }
     
 }

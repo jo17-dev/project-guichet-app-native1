@@ -53,9 +53,9 @@ public class GestionnaireGuichet {
      * pour ça
      * 1- on cherche le compte cheque coresspondant
      */
-    public void retraitCheque(int codeClient, double montant){
+    public void retraitCheque(String codeClient, double montant){
         for(Cheque item : comptesCheque){
-            if(item.getCodeClient() == codeClient){
+            if(codeClient.equals(item.getCodeClient())){
                 item.retrait(montant);
                 transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
                 break;
@@ -63,9 +63,9 @@ public class GestionnaireGuichet {
         }
     }
 
-    public void retraitEpargne(int codeClient, int numeroCompte ,double montant){
+    public void retraitEpargne(String codeClient, int numeroCompte ,double montant){
         for(Epargne item : comptesEpargne){
-            if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
+            if( codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){
                 item.retrait(montant);
                 transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
                 break;
@@ -75,9 +75,9 @@ public class GestionnaireGuichet {
         }
     }
 
-    public void depotCheque(int codeClient, double montant){
+    public void depotCheque(String codeClient, double montant){
         for(Cheque item : comptesCheque){
-            if(item.getCodeClient() == codeClient){
+            if(codeClient.equals(item.getCodeClient())){
                 item.depot(montant);
                 transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
                 break;
@@ -86,9 +86,9 @@ public class GestionnaireGuichet {
     }
 
     
-    public void depotEpargne(int codeClient, int numeroCompte ,double montant){
+    public void depotEpargne(String codeClient, int numeroCompte ,double montant){
         for(Epargne item : comptesEpargne){
-            if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
+            if( codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){
                 item.depot(montant);
                 transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
                 break;
@@ -99,9 +99,9 @@ public class GestionnaireGuichet {
     }
 
     /*paiement de facture d'un compte cheque vers un autre de compte de numée "numeroCompte" montant */
-    public void paiementFacture(int codeClient, int numeroCompte, double montant){ 
+    public void paiementFacture(String codeClient, int numeroCompte, double montant){ 
         for(Cheque item : comptesCheque){
-            if(item.getCodeClient() == codeClient && item.getNumeroCompte() == numeroCompte){
+            if(codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){
                 item.paiementFacture(montant);
                 transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, banque, "paiement")); // le paiement de facture se fait à la banque pour que'elle traite de sont cotéavac les partenaires
                 break;
@@ -111,10 +111,10 @@ public class GestionnaireGuichet {
         }
     }
 
-    public void transfertFonds(int codeClient, double montant, String typeCompte, int numeroCompteDestination){
+    public void transfertFonds(String codeClient, double montant, String typeCompte, int numeroCompteDestination){
         Cheque compteDepart = null;
         for(Cheque item : comptesCheque){
-            if(item.getCodeClient() == codeClient){
+            if(codeClient.equals(item.getCodeClient())){
                 compteDepart = item;
             }
         }
@@ -173,7 +173,7 @@ public class GestionnaireGuichet {
     }
 
     // en supposant que c'est une methode admin, le compte crée doit être Cheque tandis que les autres comptes comptes seont crée au login des client eux meme
-    public void creerCompte(int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum){
+    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum){
         Cheque tmp = new Cheque(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
         comptesCheque.add(tmp);
     }

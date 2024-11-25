@@ -5,7 +5,7 @@ public class Marge extends Compte {
     private double tauxInteret;
     
     // Constructeur
-    public Marge(double tauxInteret, int numeroCompte, int codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum) {
+    public Marge(double tauxInteret, int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum) {
         super(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
         this.tauxInteret = tauxInteret;
     }
