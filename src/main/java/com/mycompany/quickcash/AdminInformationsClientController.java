@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
  *
  * @author jo17-dev
  */
-public class AdminInformationsClientController implements Initializable {
+public class AdminInformationsClientController extends BasicControls implements Initializable {
     
     @FXML Button btn_lister_clients;
     @FXML VBox infoContainer;
@@ -71,7 +71,22 @@ public class AdminInformationsClientController implements Initializable {
                   new ElementListe(item) {
                     @Override
                     protected void setAction1() {
-                        System.out.println("Action 1 sur comptes");
+                        System.out.println("Voir les transactions");
+                        
+                        try {
+                            AdminListeTransactionsController.compteTarget = item;
+                            App.setRoot("adminListeTransactions", infoContainer.getScene());
+                        } catch (IOException ex) {                                 // TODO faire un popup qui affiche que le systeme vas s'arreter
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erreur interne");
+                            alert.setContentText("Nous notons une erreur interne. Revenez plus tard !");
+
+
+                            alert.showAndWait();
+                            System.out.println("IOException. arret du systeme");
+                            System.out.println(ex.getMessage());
+                            System.exit(1);
+                        }
                     }
 
                     @Override
@@ -106,10 +121,6 @@ public class AdminInformationsClientController implements Initializable {
                         System.out.println(ioe.getMessage());
                         System.exit(1);
         }
-    }
-    
-    public void logout(){
-        System.out.println("Logged out hahaha");
     }
     
 }

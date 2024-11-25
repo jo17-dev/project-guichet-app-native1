@@ -6,6 +6,7 @@ import backend.Compte;
 import backend.Epargne;
 import backend.Hypothecaire;
 import backend.Marge;
+import backend.Transaction;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -130,13 +131,13 @@ public abstract class ElementListe extends GridPane {
         boutonVoir.setStyle(boutonBleuStyle);
         boutonPrelever.setStyle(boutonRougeStyle);
         
-        // 4th etape: assigner les évenements DANS L'ORDRE (prelever-> action1, voir/consulter-> action2)
+        // 4th etape: assigner les évenements DANS L'ORDRE (voir/consulter-> action1, prelever-> action2, )
         boutonVoir.setOnMouseClicked(event ->{
-            setAction2();
+            setAction1();
         });
         
         boutonPrelever.setOnMouseClicked(event ->{
-            setAction1();
+            setAction2();
         });
         
         
@@ -155,6 +156,42 @@ public abstract class ElementListe extends GridPane {
 //        GridPane.setFillWidth(boutonPrelever, true);
 //        GridPane.setHalignment(boutonPrelever, HPos.RIGHT);
         GridPane.setHalignment(boutonVoir, HPos.RIGHT);
+    }
+    
+    
+    // Constructeur pour la view des comptes sur admin
+    public ElementListe(Transaction target){
+        super();
+        cible = target;
+        int nombreDivisions = 0;
+        
+        
+        // creer les différents champs 
+        // TODO à modifier par les donnés de target
+        super.add(new Label("001"), 0, 0);
+        super.add(new Label("dépot"), 1, 0);
+        super.add(new Label("Non renseigné"), 2, 0);
+        super.add(new Label("Compte #101"), 3, 0);
+        super.add(new Label("55 $"), 4, 0);
+        
+        nombreDivisions = super.getChildren().size();
+        
+        
+        super.setStyle("-fx-border-width: 1px 0px 0px 0px;-fx-border-color: #2b3385; -fx-padding: 4px");
+        super.setHgap(10);
+       
+        
+        for(int i=0; i< nombreDivisions; i++){
+            ColumnConstraints columnCons = new ColumnConstraints();
+            columnCons.setPercentWidth(100/nombreDivisions);
+            super.getColumnConstraints().add(columnCons);
+        }
+        
+        GridPane.setHalignment(super.getChildren().get(nombreDivisions-1) , HPos.CENTER);
+    }
+    
+    public Object getTarget(){
+        return cible;
     }
     
 }
