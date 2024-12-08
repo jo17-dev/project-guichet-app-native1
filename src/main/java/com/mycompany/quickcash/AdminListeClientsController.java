@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
  *
  * @author jo17-dev
  */
-public class AdminListeClientsController implements Initializable {
+public class AdminListeClientsController extends BasicControls implements Initializable {
     
     @FXML VBox itemContainer;
     

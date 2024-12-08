@@ -23,8 +23,7 @@ import javafx.scene.layout.VBox;
  * @author jo17-dev
  */
 public class AdminInformationsClientController extends BasicControls implements Initializable {
-    
-    @FXML Button btn_lister_clients;
+
     @FXML VBox infoContainer;
     
     @FXML private Label champNom;
@@ -103,24 +102,4 @@ public class AdminInformationsClientController extends BasicControls implements 
             }
         }
     }    
-    
-    
-    @FXML
-    public void afficher_liste_clients(){
-        try{
-            App.setRoot("adminListeClients", btn_lister_clients.getScene());
-        }catch(IOException ioe){
-                                    // TODO faire un popup qui affiche que le systeme vas s'arreter
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Erreur interne");
-                        alert.setContentText("Nous notons une erreur interne. Revenez plus tard !");
-
-                        
-                        alert.showAndWait();
-                        System.out.println("IOException. arret du systeme");
-                        System.out.println(ioe.getMessage());
-                        System.exit(1);
-        }
-    }
-    
 }

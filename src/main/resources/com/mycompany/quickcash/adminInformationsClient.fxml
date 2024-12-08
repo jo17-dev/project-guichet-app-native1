@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" style="-fx-background-color: #D4D4D4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.AdminInformationsClientController">
+<AnchorPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="720.0" style="-fx-background-color: #D4D4D4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.AdminInformationsClientController">
    <children>
       <Pane prefHeight="38.0" prefWidth="720.0">
          <children>
@@ -97,11 +97,11 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="6.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Ajouter un client" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="76.0" mnemonicParsing="false" onAction="#ajouterClient" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Ajouter un client" textFill="WHITE" />
       <Button fx:id="btn_lister_clients" layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#afficher_liste_clients" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Lister les clients" textFill="WHITE" />
-      <Button layoutX="6.0" layoutY="144.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Creer un compte" textFill="WHITE" />
-      <Button layoutX="6.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Remplir le guichet" textFill="WHITE" />
-      <Button layoutX="6.0" layoutY="206.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Prélever (intérêts)" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="144.0" mnemonicParsing="false" onAction="#creerCompte" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Creer un compte" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="175.0" mnemonicParsing="false" onAction="#remplirGuichet" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Remplir le guichet" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="206.0" mnemonicParsing="false" onAction="#preleverInteret" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Prélever (intérêts)" textFill="WHITE" />
       <Separator layoutX="131.0" layoutY="51.0" opacity="0.1" orientation="VERTICAL" prefHeight="394.0" prefWidth="6.0" style="-fx-background-color: black;" />
       <ScrollPane layoutX="150.0" layoutY="47.0" prefHeight="387.0" prefWidth="553.0" style="-fx-border-width: 0;">
          <content>
