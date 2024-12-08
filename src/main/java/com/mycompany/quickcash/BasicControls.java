@@ -23,28 +23,15 @@ public class BasicControls {
     
     @FXML
     public void ajouterClient(){
-        try{
-            System.out.println("Redirection vers le form d'ajout d'un client");
-            App.setRoot("adminAjouterClient", mainContainer.getScene());
-        }catch(IOException ioe){
-            // TODO faire un popup qui affiche que le systeme vas s'arreter
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur interne");
-            alert.setContentText("Nous notons une erreur interne. Revenez plus tard !");
-
-
-            alert.showAndWait();
-            System.out.println("IOException. arret du systeme");
-            System.out.println(ioe.getMessage());
-            System.exit(1);
-        }
+        System.out.println("Redirection vers le form d'ajout d'un client");
+        App.toggleStage("adminAjouterClient");
     }
     
         @FXML
     public void creerCompte(){
         try{
             System.out.println("Redirection vers le form de creation d'un compte client");
-            App.setRoot("adminAjouterClient", mainContainer.getScene());
+            App.setRoot("adminCreerCompte", mainContainer.getScene());
         }catch(IOException ioe){
             // TODO faire un popup qui affiche que le systeme vas s'arreter
             Alert alert = new Alert(Alert.AlertType.ERROR);
