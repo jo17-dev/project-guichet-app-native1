@@ -2,7 +2,7 @@
 *.class
 
 # tout le fichier target hahah
-target/*
+target/*.class
 
 # Log file
 *.log

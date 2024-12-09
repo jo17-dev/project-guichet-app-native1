@@ -73,6 +73,6 @@ public class Client {
     // toString
     @Override
     public String toString() {
-        return "Nom : " + nom + ", Prenom : " +  prenom + ", Numéro de téléphone :  " + telephone + ", Adresse Courriel : " + courriel + ", Code NIP : " + numeroNIP;
+        return "Code Client: " + codeClient + ", Nom : " + nom + ", Prenom : " +  prenom + ", Numéro de téléphone :  " + telephone + ", Adresse Courriel : " + courriel + ", Code NIP : " + numeroNIP;
     }
 }

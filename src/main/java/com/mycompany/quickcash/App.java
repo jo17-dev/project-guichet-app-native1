@@ -27,9 +27,9 @@ public class App extends Application {
     public static Scene sceneConnexionAdmin;
     static Stage stageConnexionAdmin;
     static Stage stageAdminCreerClient;
-    public static GestionnaireGuichet gestionnaire;
+    protected static GestionnaireGuichet gestionnaire;
     
-    public static USER_STATUS adminStatus = USER_STATUS.LOGGED_OUT; // statut d'authentification de l'admin
+    public static USER_STATUS userStatus = USER_STATUS.LOGGED_OUT; // statut d'authentification de l'utilisateur courant:
     
     // 
     public static enum USER_STATUS {
@@ -125,11 +125,11 @@ public class App extends Application {
         ArrayList<Client> clients = new ArrayList<>();
         clients = new ArrayList<>();
         // creation et ajout de l'admin
-       admin = new Client(Character.toString((char) Client.getNbreClients()), "Bertrand", "Joel", "514-xxx-3--7", "joel@gmail.com", 1000, true);
+       admin = new Client(String.valueOf(Client.getNbreClients()), "Bertrand", "Joel", "514-xxx-3--7", "joel@gmail.com", 1000, true);
        clients.add(admin);
        for(int i=0; i<5; i++){
             clients.add(
-                new Client(Character.toString((char) Client.getNbreClients()), 
+                new Client(String.valueOf(Client.getNbreClients()), 
                     "nomClient "+i, 
                     "prenomClient "+i,
                      "514"+i, "couriel@gmail."+i, 200+i

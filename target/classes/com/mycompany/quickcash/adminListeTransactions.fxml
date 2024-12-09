@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainContainer" prefHeight="453.0" prefWidth="720.0" style="-fx-background-color: D4D4D4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.AdminListeTransactionsController">
+   <children>
+      <Separator layoutX="133.0" layoutY="48.0" opacity="0.1" orientation="VERTICAL" prefHeight="400.0" prefWidth="0.0" style="-fx-background-color: black;" />
+      <Pane prefHeight="38.0" prefWidth="720.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="262.0" layoutY="-4.0" prefHeight="45.0" prefWidth="165.0" text="QuickCash Admin" textAlignment="CENTER" textFill="#2b3385">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="37.0" prefWidth="263.0" spacing="14.0">
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="447.0" prefHeight="37.0" prefWidth="269.0" spacing="14.0">
+               <children>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/blue-star.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Label layoutX="10.0" layoutY="47.0" prefHeight="17.0" prefWidth="117.0" text="Actions" textFill="#2b3385">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="6.0" layoutY="76.0" mnemonicParsing="false" onAction="#ajouterClient" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Ajouter un client" textFill="WHITE" />
+      <Button fx:id="btn_lister_clients" layoutX="6.0" layoutY="110.0" mnemonicParsing="false" onAction="#afficher_liste_clients" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Lister les clients" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="144.0" mnemonicParsing="false" onAction="#creerCompte" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Creer un compte" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="175.0" mnemonicParsing="false" onAction="#remplirGuichet" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Remplir le guichet" textFill="WHITE" />
+      <Button layoutX="6.0" layoutY="206.0" mnemonicParsing="false" onAction="#preleverInteret" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Prélever (intérêts)" textFill="WHITE" />
+      <Label layoutX="6.0" layoutY="386.0" prefHeight="17.0" prefWidth="125.0" text="Joël Bertrand" textFill="#2b3385" />
+      <Label layoutX="149.0" layoutY="47.0" prefHeight="21.0" prefWidth="493.0" style="-fx-underline: true;" text="Liste des transactions du compte ()" textFill="#2b3385">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="157.0" layoutY="80.0" text="Code" />
+      <Label layoutX="379.0" layoutY="80.0" text="Provenance" />
+      <Label layoutX="484.0" layoutY="80.0" text="Destination" />
+      <Label layoutX="619.0" layoutY="80.0" text="Montant" />
+      <ScrollPane fitToWidth="true" layoutX="149.0" layoutY="106.0" prefHeight="332.0" prefWidth="567.0" style="-fx-background-color: #D4D4D4;">
+         <content>
+            <VBox fx:id="itemContainer" alignment="TOP_CENTER" prefHeight="339.0" prefWidth="565.0" spacing="5.0" style="-fx-background-color: #D4D4D4;" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
+      <Label layoutX="266.0" layoutY="80.0" text="Type" />
+   </children>
+</AnchorPane>
