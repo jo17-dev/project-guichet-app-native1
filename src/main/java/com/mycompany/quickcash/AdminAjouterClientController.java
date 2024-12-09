@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
 /**
@@ -26,6 +27,7 @@ public class AdminAjouterClientController implements Initializable {
     @FXML private TextField courrielEntry;
     @FXML private TextField telephoneEntry;
     @FXML private TextField nipEntry;
+    @FXML private RadioButton estAdminEntry;
     @FXML
     private Button valider_btn; // contient le bouton valider pour creer un user
     
@@ -35,9 +37,6 @@ public class AdminAjouterClientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Page de creation d'un client montee");
-        
-        
-        
         generatedClientCode.setText(String.valueOf(backend.Client.getNbreClients()));
     }    
     
@@ -97,7 +96,7 @@ public class AdminAjouterClientController implements Initializable {
         
         System.out.println("Tout est conforme");
         
-        App.gestionnaire.creerClient(generatedClientCode.getText(), nom, prenom, telephone, courriel, Integer.parseInt(nip));
+        App.gestionnaire.creerClient(generatedClientCode.getText(), nom, prenom, telephone, courriel, Integer.parseInt(nip), estAdminEntry.isSelected());
         
         
         // reinitialisation mise à jours des vues

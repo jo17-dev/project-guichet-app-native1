@@ -150,8 +150,8 @@ public class GestionnaireGuichet {
 
     // creer client est une methode destiné à l'admin uniquement. il faudrai donc trouver un moyen de l'authenfier
     // On pourrai utiliser la methode checkAdmin de l'object client qui vas initier cette methode avant son appel
-    public void creerClient(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP){
-        Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, false);
+    public void creerClient(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP, boolean estAdmin){
+        Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, estAdmin);
         clients.add(tmp);
     }
 
