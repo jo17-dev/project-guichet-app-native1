@@ -19,6 +19,14 @@ public class Transaction {
         this.compteTransfert = compteTransfert;
         this.type = type;
     }
+    
+    protected int getNumeroCompteDepart(){
+        return compte.getNumeroCompte();
+    }
+    
+    protected int getNumeroCompteDestination(){
+        return compteTransfert.getNumeroCompte();
+    }
 
     // toString 
     public String toString() {

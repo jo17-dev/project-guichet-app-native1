@@ -35,17 +35,19 @@ public class AdminListeTransactionsController extends BasicControls implements I
         if(compteTarget != null){
             // TODO récupérer les transaction du client dans tous ces comptes
             // Pour le moment, on vas juste creer 4 transaction
-             ArrayList<Transaction> transactions = new ArrayList<>();
+             ArrayList<Transaction> transactions = App.gestionnaire.getTransactionsParComptes(compteTarget.getNumeroCompte());
              
-             for(int i=0; i< 4; i++){
-                 transactions.add(new Transaction(10+i,40, null, null, "depot"));
-             }
+
+//            if(transactions.size() == 0){
+//                itemContainer.getChildren().add(
+//                        
+//                );
+//            }
             
             
-            
-            for(int i=0; i<4; i++){
+            for(Transaction item : transactions){
                 itemContainer.getChildren().add(
-                    new ElementListe(transactions.get(i)) {
+                    new ElementListe(item) {
                         @Override
                         protected void setAction1() {
                             System.out.println("action 3 - transaction");
@@ -53,7 +55,7 @@ public class AdminListeTransactionsController extends BasicControls implements I
 
                         @Override
                         protected void setAction2(){
-
+                            System.out.println("action 2 - transaction");
                         }
 
                         @Override

@@ -248,5 +248,17 @@ public class GestionnaireGuichet {
         return resultat;
     }
     
+    public ArrayList<Transaction> getTransactionsParComptes(int numeroCompte){
+        ArrayList<Transaction> result = new ArrayList<>();
+        
+        for(Transaction item : transactions){
+            if(item.getNumeroCompteDepart() == numeroCompte || item.getNumeroCompteDestination() == numeroCompte){
+                result.add(item);
+            }
+        }
+        
+        return result;
+    }
+    
     
 }
