@@ -1,0 +1,6 @@
+backend\Hypothecaire.class
+com\mycompany\quickcash\ClientLoginController.class
+backend\Cheque.class
+backend\Epargne.class
+backend\Compte.class
+backend\Marge.class
