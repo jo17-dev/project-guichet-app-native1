@@ -153,6 +153,8 @@ public class GestionnaireGuichet {
     public void creerClient(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP, boolean estAdmin){
         Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, estAdmin);
         clients.add(tmp);
+        // ensuite on le crée son compte obligatoire: (cheque)
+        creerCompte(Compte.getNbreComptes(), codeClient, 0, 1000, 1000);
     }
 
     // en supposant que c'est une methode admin, le compte crée doit être Cheque tandis que les autres comptes comptes seont crée au login des client eux meme
