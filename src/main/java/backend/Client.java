@@ -1,4 +1,4 @@
-
+    
 package backend;
 
 /**
@@ -12,6 +12,7 @@ public class Client {
     private String courriel;
     private int numeroNIP;
     private boolean estAdmin;
+    private static int nbreClients = 0;
 
     // Constructeur ( Pour creer un client normal)
     public Client(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP){
@@ -21,6 +22,7 @@ public class Client {
         this.telephone = telephone;
         this.courriel = courriel;
         this.numeroNIP = numeroNIP;
+        nbreClients++;
         estAdmin = false;
     }
 
@@ -33,6 +35,7 @@ public class Client {
         this.courriel = courriel;
         this.numeroNIP = numeroNIP;
         this.estAdmin = estAdmin;
+        nbreClients++;
     }
 
     // Getters
@@ -51,6 +54,10 @@ public class Client {
     
     public String getCouriel(){
         return courriel;
+    }
+    
+    public static int getNbreClients(){
+        return nbreClients;
     }
 
     // checkNIP

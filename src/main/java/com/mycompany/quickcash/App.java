@@ -1,5 +1,14 @@
 package com.mycompany.quickcash;
 
+import backend.Banque;
+import backend.Cheque;
+import backend.Client;
+import backend.Compte;
+import backend.Epargne;
+import backend.GestionnaireGuichet;
+import backend.Hypothecaire;
+import backend.Marge;
+import backend.Transaction;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * JavaFX App
@@ -17,9 +27,25 @@ public class App extends Application {
     public static Scene sceneConnexionAdmin;
     static Stage stageConnexionAdmin;
     static Stage stageAdminCreerClient;
+    public static GestionnaireGuichet gestionnaire;
+    
+    public static USER_STATUS adminStatus = USER_STATUS.LOGGED_OUT; // statut d'authentification de l'admin
+    
+    // 
+    public static enum USER_STATUS {
+      LOGGED_IN,
+      LOGGED_OUT
+    };
 
     @Override
     public void start(Stage stage) throws IOException {
+        // 1st etape: initialiser le gestionnaire de Guichet pour la banque haha
+        
+        initGestionnaireGuichet();
+        
+        
+        
+        //2e etape:initialiser les vues et afficher les parties login de client et admin
         sceneConnexionClient = new Scene(loadFXML("clientLogin"), 720, 450);
         stage.setScene(sceneConnexionClient);
         stage.show();
@@ -45,7 +71,7 @@ public class App extends Application {
     }
     
     /**
-     * create or close a stage depending on his curenr stage
+     * show or close a stage depending on his current stage
      * @param target page 
      * 
      */
@@ -54,24 +80,93 @@ public class App extends Application {
         switch(target){
             case "adminAjouterClient":
                 targetStage = stageAdminCreerClient;
-                System.out.println(stageAdminCreerClient.isShowing());
                 break;
             default:
                 System.out.println("Aucune fenetre n'as pu être affichée");
                 break;
         }
         
-//        targetStage != null ? (targetStage.isShowing() ? targetStage.close() : targetStage.show()) : System.out.println("dammn this doesn't works");
+        // targetStage != null ? (targetStage.isShowing() ? targetStage.close() : targetStage.show()) : System.out.println("dammn this doesn't works");
 
         // si la fenetre cible existe et n'est pas ouverte, on la ferme. sinon on l'ouvre... c'est TRIVIAL hahahah
         // OUIIIII mes commentaires sont WTF hahaha mais avouez sa détends l'athmosphère de pression comme ça hahahah. bon promis j'arrete
         if(targetStage != null){
             if(targetStage.isShowing()){
                 targetStage.close();
+                System.out.println("page fermée");
             }else{
                 targetStage.show();
+                System.out.println("page ouverte ");
             }
         }
+    }
+    
+    /**
+     * Initialisation de l'attribut statique gestionnaire de guichet
+     * Le gestionnaire de Guichet vas être initialisé avec:
+     * -5 (+1) clients
+     * - un compte cheque et un compte epargne par client
+     * - un admin( 6e client)
+     */
+    public void initGestionnaireGuichet(){
+        // compte client de la banque:
+        Client compteClientDeLaBanqueActuelle = new Client( Character.toString((char) Client.getNbreClients()), "quickCash", "", "tel-banque", "banque@couriel.com", 0000);
+        // compte de la banque actuelle (quickCash)
+        Compte compte = new Banque(Compte.getNbreComptes(), compteClientDeLaBanqueActuelle.getCodeClient(), 20000, 20000,1000, 20000, 20000 );
+        Client admin;
+        
+        ArrayList<Cheque> cheques = new ArrayList<>();
+        ArrayList<Epargne> epargnes = new ArrayList<>();
+        ArrayList<Marge> marges = new ArrayList<>();
+        ArrayList<Hypothecaire> hypothecaires = new ArrayList<>();
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        double soldeCompteCourant = 0;
+        // creation des clients
+        ArrayList<Client> clients = new ArrayList<>();
+        clients = new ArrayList<>();
+        // creation et ajout de l'admin
+       admin = new Client(Character.toString((char) Client.getNbreClients()), "Bertrand", "Joel", "514-xxx-3--7", "joel@gmail.com", 1000, true);
+       clients.add(admin);
+       for(int i=0; i<5; i++){
+            clients.add(
+                new Client(Character.toString((char) Client.getNbreClients()), 
+                    "nomClient "+i, 
+                    "prenomClient "+i,
+                     "514"+i, "couriel@gmail."+i, 200+i
+                )
+            );
+       }
+       
+       // creation des comptes asssociés à chaque compte:
+       
+       for(Client client : clients){
+           // compte cheque obligatoire
+            cheques.add(
+                new Cheque(
+                     Compte.getNbreComptes(),
+                     client.getCodeClient(),
+                     120,
+                     1000,
+                     1000
+                )
+           );
+           
+            // compte epargne:
+            epargnes.add(
+                new Epargne(                     
+                    Compte.getNbreComptes(),
+                    client.getCodeClient(),
+                    120,
+                    1000,
+                    1000,
+                    1.25
+                )
+            );
+       }
+       // instantiation de gestionnaireGuichet:
+       gestionnaire = new GestionnaireGuichet(compte, clients, cheques, epargnes, marges, hypothecaires, transactions, soldeCompteCourant);
+        System.out.println(clients);
+       
     }
 
     public static void main(String[] args) {
