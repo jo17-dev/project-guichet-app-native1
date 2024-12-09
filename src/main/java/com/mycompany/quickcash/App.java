@@ -26,6 +26,7 @@ public class App extends Application {
     public static Scene sceneConnexionAdmin;
     static Stage stageConnexionAdmin;
     static Stage stageAdminCreerClient;
+    static Stage stageAdminCreerCompte;
     protected static GestionnaireGuichet gestionnaire;
     
     protected static Client loggedUser = null;
@@ -52,6 +53,9 @@ public class App extends Application {
         
         stageAdminCreerClient = new Stage(); // le reste des choses vont êtres faites lors du click sur le bouton pour économiser les ressources..
         stageAdminCreerClient.setScene(new Scene(loadFXML("adminAjouterClient"),330, 462));
+        
+        stageAdminCreerCompte = new Stage();
+        stageAdminCreerCompte.setScene(new Scene(loadFXML("adminCreerCompte"), 333, 321));
     }
     
     public static void setRoot(String fxml, Scene target) throws IOException {
@@ -73,6 +77,9 @@ public class App extends Application {
         switch(target){
             case "adminAjouterClient":
                 targetStage = stageAdminCreerClient;
+                break;
+            case "adminCreerCompte":
+                targetStage = stageAdminCreerCompte;
                 break;
             default:
                 System.out.println("Aucune fenetre n'as pu être affichée");
