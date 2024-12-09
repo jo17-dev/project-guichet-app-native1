@@ -34,7 +34,7 @@ public abstract class ElementListe extends GridPane {
     
             
     //    constructeur: Pour la classe Client 
-    public ElementListe(Client target){
+    public ElementListe(Client target, boolean estBloque){
         super();
         cible = target;
         double nombreDivisions = 5;
@@ -43,7 +43,7 @@ public abstract class ElementListe extends GridPane {
         String boutonRougeStyle = "-fx-background-color:  #942F2F; -fx-text-fill: #ffffff";
         
         Button boutonVoir = new Button("voir");
-        Button boutonBloquer =new Button("Bloquer");
+        Button boutonBloquer = new Button(estBloque ? "Débloquer" : "Bloquer");
         
         
         super.add(new Label(target.getCodeClient()), 0, 0);
@@ -59,7 +59,7 @@ public abstract class ElementListe extends GridPane {
         boutonVoir.setStyle(boutonBleuStyle);
         boutonBloquer.setStyle(boutonRougeStyle);
         
-        // 4th etape: assigner les évenements DANS L'ORDRE (Voir-> action1, entendre-> action2)
+        // 4th etape: assigner les évenements DANS L'ORDRE (Voir-> action1, bloquer/débloquer-> action2)
         boutonVoir.setOnMouseClicked(event ->{
             setAction1();
         });

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class GestionnaireGuichet {
     private Compte banque;
     private ArrayList<Client> clients;
+    private ArrayList<Client> listeNoireClients;// liste des clients bloqués ( dont on a interdit l'acces )
     private ArrayList<Cheque> comptesCheque;
     private ArrayList<Epargne> comptesEpargne;
     private ArrayList<Marge> comptesMarge;
@@ -29,6 +30,8 @@ public class GestionnaireGuichet {
         this.transactions = transactions;
         this.soldeCompteCourant = soldeCompteCourant;
         nbreTentative = 0;
+        
+        this.listeNoireClients = new ArrayList<>();
     }
 
     // retrait du compte cheque
@@ -187,6 +190,50 @@ public class GestionnaireGuichet {
         }
     }
     
+    /**
+     * Ajouter un client à la liste noire:
+     * pour ça, on l'ajoute s'il nexiste pas déjas
+     * @param target
+     * @return Boolean
+     */
+    public boolean bloquerClient(Client target){
+        for(Client item : listeNoireClients){
+            if(item.getCodeClient().equals(target.getCodeClient())){
+                return false;
+            }
+        }
+        listeNoireClients.add(target);
+        return true;
+    }
+    
+    /**
+    * Ajouter un client à la liste noire:
+    * pour ça, on l'ajoute s'il nexiste pas déjas
+    * @param target
+    * @return Boolean
+    */
+    public boolean debloquerClient(Client target){
+        boolean foundOnBlackList = false;
+        for(Client item : listeNoireClients){
+            if(item.getCodeClient().equals(target.getCodeClient())){
+                foundOnBlackList = true;
+            }
+        }
+        
+        if(foundOnBlackList){
+            listeNoireClients.remove(target);
+        }
+      return false;
+    }
+    
+    /**
+     * renvoie true si le client est bloqueé ( est dans la liste noir )
+     * @param target
+     * @return 
+     */
+    public boolean estBloque(Client target){
+        return listeNoireClients.contains(target);
+    }
     
     // La suite ici devraient être dans une classe GestionnaireDAO mais bon... tout ça vas être maintenue après..
         // valider utilisateur

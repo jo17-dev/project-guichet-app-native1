@@ -79,11 +79,14 @@ public class Client {
         return courriel;
     }
     
+    public String getTelephone(){
+        return telephone;
+    }
     
     public static int getNbreClients(){
         return nbreClients;
     }
-   
+    
     // checkNIP
     
     public boolean checkNIP(int numeroNIP) {

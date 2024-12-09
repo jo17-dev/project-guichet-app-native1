@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -37,7 +39,8 @@ public class AdminListeClientsController extends BasicControls implements Initia
            if(item.equals(App.loggedUser)){
                continue;
            }
-           itemContainer.getChildren().add(new ElementListe(item) {
+           itemContainer.getChildren().add(new ElementListe(item, App.gestionnaire.estBloque(item)) {
+               // action 1: corespond au bouton pour voir un element en particulier
                @Override
                protected void setAction1() {
                    try{
@@ -62,8 +65,23 @@ public class AdminListeClientsController extends BasicControls implements Initia
                }
 
                @Override
+               // Ceci est l'action pour bloquer/debloquer un client
                protected void setAction2() {
-                   System.out.println("action 2");
+                   // Ceci bloque le client s'il ne l'est pas et le s'il l'est     
+
+                    if(App.gestionnaire.estBloque(item) == true){
+                        App.gestionnaire.debloquerClient(item);
+                    }else{
+                        App.gestionnaire.bloquerClient(item);
+                    }
+                   System.out.println("action 2 - bloquer/debloquer un client");
+                    
+                   try {
+                       // reaffichage de cette vue
+                       App.setRoot("adminListeClients", itemContainer.getScene());
+                   } catch (IOException ex) {
+                       System.out.println("Impossible de recharger la page... mais pas grave hahaha");
+                   }
                }
 
                @Override

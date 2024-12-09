@@ -47,6 +47,7 @@ public class AdminInformationsClientController extends BasicControls implements 
             champNom.setText(cible.getNom());
             champPrenom.setText(cible.getPrenom());
             champCourriel.setText(cible.getCouriel());
+            champTelephone.setText(cible.getTelephone());
         // Pour récuperer les comptes cibles. ( pour les tests, on vas en creer vite fait ici..
             comptesClient = App.gestionnaire.getComptesParClient(cible.getCodeClient());
         
