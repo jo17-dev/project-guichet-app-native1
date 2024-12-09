@@ -4,6 +4,7 @@
  */
 package com.mycompany.quickcash;
 
+import backend.Client;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
+import static backend.Client.USER_ROLE;
+import static backend.Client.USER_STATUS;
 
 /**
  * FXML Controller class
@@ -46,30 +50,29 @@ public class AdminLoginController implements Initializable {
             alert.showAndWait();
             return;
         }
-        boolean estAdmin = false;
-        if(App.gestionnaire.validerUtilisateur(codeClient.getText(), Integer.parseInt(nipEntry.getText())) == null){
+        App.loggedUser = App.gestionnaire.validerUtilisateur(codeClient.getText(), Integer.parseInt(nipEntry.getText()));
+        if(App.loggedUser == null){
             // echec: identifiansts non valides
             System.out.println("Identifiants non trouvés dans la 'bd' hahaha");
             alert.setTitle("Erreur d'identifiants");
             alert.setContentText("Les identifiants entrés ne correspondent à aucun client.. veuillez ressayer.");
             alert.showAndWait();
             return;
-        }else if(App.gestionnaire.validerUtilisateur(codeClient.getText(), Integer.parseInt(nipEntry.getText())).checkAdmin()){
-            // le user est un admin
-            estAdmin = true;
+        }else if(App.loggedUser.userRole == Client.USER_ROLE.ADMIN){
+            // le user est un admin: on v
+            App.loggedUser.userRole = USER_ROLE.ADMIN;
             System.out.println("Le user est un admin");
         }else{
-            // on le logge dans l'espace client
-            System.out.println("Le user n'est pas un admin");
+            // le user est un client
+            App.loggedUser.userRole = USER_ROLE.CLIENT;
+            System.out.println("Le user est un client");
         }
         
-        
-        // le user est un admin
-        System.out.println("Le user est un admin");
-        App.userStatus = App.USER_STATUS.LOGGED_IN;
         // on le logge dans le compte admin
+        App.loggedUser.userStatus = USER_STATUS.LOGGED_IN;
+        
         try {
-            App.setRoot(estAdmin ? "adminListeClients" : "clientAcceuil", btnValider.getScene());
+            App.setRoot(App.loggedUser.userRole == USER_ROLE.ADMIN ? "adminListeClients" : "clientAcceuil", btnValider.getScene());
         } catch (IOException ex) {
             // TODO faire un popup qui affiche que le systeme vas s'arreter
             alert.setTitle("Erreur interne");

@@ -47,6 +47,10 @@ public class GestionnaireGuichet {
         System.out.println("Echec de l'authentification. " + (nbreTentative<nbreTentativeMax ? "Réessayez !" : " Vous avez épuiser les trois essais"));
         return null;
     }
+    
+    public ArrayList<Client> getClients(){
+        return clients;
+    }
 
     // retrait du compte cheque
     /*

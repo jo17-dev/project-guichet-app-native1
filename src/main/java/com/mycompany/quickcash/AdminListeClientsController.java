@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
@@ -29,17 +28,15 @@ public class AdminListeClientsController extends BasicControls implements Initia
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // 1st etape: recupération des données de touts les clients de gestionnaire guichers
-       listeClients = new ArrayList<>();
-       for(int i=0; i<11; i++){
-        listeClients.add(new Client("00"+i, 
-                "nomClient "+i, 
-                "prenomClient "+i,
-                 "123"+i, "couriel@gmail."+i, 200+i));
-       }
+       listeClients = App.gestionnaire.getClients();
        
        
        // 2nd etape: affichage des données dans la vue
        for(Client item : listeClients){
+           // ici, on vas afficher tous les compte client/admin sauf pour celui qui est actuelement connecté:
+           if(item.equals(App.loggedUser)){
+               continue;
+           }
            itemContainer.getChildren().add(new ElementListe(item) {
                @Override
                protected void setAction1() {

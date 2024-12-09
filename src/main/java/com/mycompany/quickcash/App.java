@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 /**
  * JavaFX App
  */
@@ -29,13 +28,7 @@ public class App extends Application {
     static Stage stageAdminCreerClient;
     protected static GestionnaireGuichet gestionnaire;
     
-    public static USER_STATUS userStatus = USER_STATUS.LOGGED_OUT; // statut d'authentification de l'utilisateur courant:
-    
-    // 
-    public static enum USER_STATUS {
-      LOGGED_IN,
-      LOGGED_OUT
-    };
+    protected static Client loggedUser = null;
 
     @Override
     public void start(Stage stage) throws IOException {

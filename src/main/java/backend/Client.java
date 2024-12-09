@@ -13,6 +13,25 @@ public class Client {
     private int numeroNIP;
     private boolean estAdmin;
     private static int nbreClients = 0;
+    
+    // ces attributs n'ont vraiment pas besoin d'être privés
+    public USER_ROLE userRole;
+    public USER_STATUS userStatus;
+    
+    // enum pour connaître le statut de connexion d'un user
+    public static enum USER_STATUS {
+      LOGGED_IN,
+      LOGGED_OUT,
+    };
+    
+    // this enum est le role de l'utilisateur actuelement connecté.
+    // seras utilisé pour authentifier acceder au role de celui qui c'est authentifié
+    
+    public static enum USER_ROLE {
+      ADMIN, // role de l'admin
+      CLIENT,
+      DEFAULT
+    };
 
     // Constructeur ( Pour creer un client normal)
     public Client(String codeClient, String nom, String prenom, String telephone, String courriel, int numeroNIP){
@@ -24,6 +43,8 @@ public class Client {
         this.numeroNIP = numeroNIP;
         nbreClients++;
         estAdmin = false;
+        
+        this.userRole = USER_ROLE.CLIENT;
     }
 
     // Constructeur ( Pour crer un client ou un Admin, dépendament du dernier parametre )
@@ -36,6 +57,8 @@ public class Client {
         this.numeroNIP = numeroNIP;
         this.estAdmin = estAdmin;
         nbreClients++;
+        
+        this.userRole = estAdmin ? USER_ROLE.ADMIN : USER_ROLE.CLIENT;
     }
 
     // Getters
@@ -56,10 +79,11 @@ public class Client {
         return courriel;
     }
     
+    
     public static int getNbreClients(){
         return nbreClients;
     }
-
+   
     // checkNIP
     
     public boolean checkNIP(int numeroNIP) {
