@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
@@ -49,19 +48,7 @@ public class AdminInformationsClientController extends BasicControls implements 
             champPrenom.setText(cible.getPrenom());
             champCourriel.setText(cible.getCouriel());
         // Pour récuperer les comptes cibles. ( pour les tests, on vas en creer vite fait ici..
-            comptesClient = new ArrayList<>();
-            
-            comptesClient.add(
-                new Cheque(1, cible.getCodeClient() , 120.0, 1000, 1000)
-            );
-            
-            comptesClient.add(
-                new Epargne(2, cible.getCodeClient(), 120.0, 1000, 1000, 1.25)
-            );            
-            
-            comptesClient.add(
-                new Hypothecaire(3, cible.getCodeClient(), 120.0, 1000, 1000)
-            );
+            comptesClient = App.gestionnaire.getComptesParClient(App.loggedUser.getCodeClient());
         
             
             // step 2: ajout des comptes à l'interface grphique via ListeElement

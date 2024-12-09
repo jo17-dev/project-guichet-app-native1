@@ -31,27 +31,6 @@ public class GestionnaireGuichet {
         nbreTentative = 0;
     }
 
-    // valider utilisateur
-    public Client validerUtilisateur(String codeClient, int nip){
-        nbreTentative++;
-        if(nbreTentative > nbreTentativeMax){
-            System.out.println("vous n'avez plus droit aux tentatives");
-            return null;
-        }
-        for(Client item : clients){
-            if(item.getCodeClient().equals(codeClient) && item.checkNIP(nip)){
-                nbreTentative = 0;
-                return item;
-            }
-        }
-        System.out.println("Echec de l'authentification. " + (nbreTentative<nbreTentativeMax ? "Réessayez !" : " Vous avez épuiser les trois essais"));
-        return null;
-    }
-    
-    public ArrayList<Client> getClients(){
-        return clients;
-    }
-
     // retrait du compte cheque
     /*
      * pour ça
@@ -205,5 +184,69 @@ public class GestionnaireGuichet {
             }
         }
     }
+    
+    
+    // La suite ici devraient être dans une classe GestionnaireDAO mais bon... tout ça vas être maintenue après..
+        // valider utilisateur
+    public Client validerUtilisateur(String codeClient, int nip){
+        nbreTentative++;
+        if(nbreTentative > nbreTentativeMax){
+            System.out.println("vous n'avez plus droit aux tentatives");
+            return null;
+        }
+        for(Client item : clients){
+            if(item.getCodeClient().equals(codeClient) && item.checkNIP(nip)){
+                nbreTentative = 0;
+                return item;
+            }
+        }
+        System.out.println("Echec de l'authentification. " + (nbreTentative<nbreTentativeMax ? "Réessayez !" : " Vous avez épuiser les trois essais"));
+        return null;
+    }
+    
+    
+    // get tous les clients
+    public ArrayList<Client> getClients(){
+        return clients;
+    }
+    
+    // get tous les comptes appartenant à un seul client
+    // on vas juste boucler sur tous les types de comptes
+    public ArrayList<Compte> getComptesParClient(String codeClient){
+        ArrayList<Compte> resultat = new ArrayList<>();
+        // comptes cheque:
+        for(Cheque cheque : comptesCheque ){
+            if(cheque.getCodeClient().equals(codeClient)){
+                resultat.add(cheque);
+                break; // car on a un seul compte cheque non ? pas besoin d'en faire tout un plat avec les specs de la machine haha
+            }
+        }
+        
+        // comptes epargne:
+        for(Epargne item : comptesEpargne ){
+            if(item.getCodeClient().equals(codeClient)){
+                resultat.add(item);
+            }
+        }
+                
+        // comptes hypothecaires:
+        for(Hypothecaire item : comHypothecaire ){
+            if(item.getCodeClient().equals(codeClient)){
+                resultat.add(item);
+            }
+        }
+        
+        // comptes epargne:
+        for(Marge item : comptesMarge ){
+            if(item.getCodeClient().equals(codeClient)){
+                resultat.add(item);
+                break; // on a max un seul compte marge..
+            }
+        }
+        
+        
+        return resultat;
+    }
+    
     
 }
