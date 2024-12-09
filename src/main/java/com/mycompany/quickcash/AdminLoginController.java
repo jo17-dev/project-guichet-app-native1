@@ -32,20 +32,27 @@ public class AdminLoginController implements Initializable {
     
     @FXML
     public void login(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         // 1er etape: check les entréé
         try{
-            Integer.parseInt(nipEntry.getText());
+            Integer.parseInt(nipEntry.getText()); // test l'entrée est un nombre
             if(codeClient.getText().length() == 0 || nipEntry.getText().length() == 0){
                 throw new Exception("Les champs doivent etre non vides");
             }
         }catch(Exception ex){
             System.out.println("la sasie des entrées est non valide");
+            alert.setTitle("Saisies non conformes");
+            alert.setContentText("Les champs doivent être non vides et vous devez utiliser uniquement des chiffres !");
+            alert.showAndWait();
             return;
         }
         boolean estAdmin = false;
         if(App.gestionnaire.validerUtilisateur(codeClient.getText(), Integer.parseInt(nipEntry.getText())) == null){
             // echec: identifiansts non valides
             System.out.println("Identifiants non trouvés dans la 'bd' hahaha");
+            alert.setTitle("Erreur d'identifiants");
+            alert.setContentText("Les identifiants entrés ne correspondent à aucun client.. veuillez ressayer.");
+            alert.showAndWait();
             return;
         }else if(App.gestionnaire.validerUtilisateur(codeClient.getText(), Integer.parseInt(nipEntry.getText())).checkAdmin()){
             // le user est un admin
@@ -65,11 +72,10 @@ public class AdminLoginController implements Initializable {
             App.setRoot(estAdmin ? "adminListeClients" : "clientAcceuil", btnValider.getScene());
         } catch (IOException ex) {
             // TODO faire un popup qui affiche que le systeme vas s'arreter
-            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur interne");
             alert.setContentText("Nous notons une erreur interne. Revenez plus tard !");
-            
             alert.showAndWait();
+            
             System.out.println("IOException. arret du systeme");
             System.out.println(ex.getMessage());
             System.exit(1);
