@@ -260,5 +260,14 @@ public class GestionnaireGuichet {
         return result;
     }
     
+    public boolean courielExistant(String target){
+        for(Client item : clients){
+            if(item.getCouriel().equals(target)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     
 }

@@ -7,13 +7,12 @@ package com.mycompany.quickcash;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 /**
  *
  * @author jo17-dev
- * Cette classe contient les controls de bases ( logout, changement de page(il vas catch l'expeception ici est afficher les messages d'erreurs
+ * Cette classe contient les controls de bases ( logout, changement de page(il vas catch l'expeception ici est afficher les messages d'erreurs)) déclenchés pas l'user via le click et tout..
  */
 public class BasicControls {
     @FXML AnchorPane mainContainer;
@@ -21,6 +20,10 @@ public class BasicControls {
         
     }
     
+    
+    // actions
+    
+    // clic sur le bouton ajouterClient ( ce n'est pas le bouton du form ici..)
     @FXML
     public void ajouterClient(){
         System.out.println("Redirection vers le form d'ajout d'un client");
@@ -83,7 +86,21 @@ public class BasicControls {
     @FXML
     public void logout(){
         System.out.println("_____deconnexion_____");
-        System.exit(0);
+        try{
+            App.loggedUser = null;
+            App.setRoot("adminLogin", mainContainer.getScene());
+        }catch(IOException ioe){
+            // TODO faire un popup qui affiche que le systeme vas s'arreter
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur interne");
+            alert.setContentText("Nous notons une erreur interne. Revenez plus tard !");
+
+
+            alert.showAndWait();
+            System.out.println("IOException. arret du systeme");
+            System.out.println(ioe.getMessage());
+            System.exit(1);
+        }
     }
     
 }

@@ -75,13 +75,6 @@ public class AdminListeClientsController extends BasicControls implements Initia
        
         System.out.println("page - liste client montée");
     }
-
-   @FXML
-   public void logout(){
-       // ceci n'est pas le vrai code de la methode.
-       // la vrai version sera crée ultérieurement
-       System.exit(0);
-   }
    
     
 }
