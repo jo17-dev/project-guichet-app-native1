@@ -86,7 +86,7 @@ public class AdminAjouterClientController implements Initializable {
         
         
         // On check l'unicité de l'email:
-        if(App.gestionnaire.courielExistant(courriel)){
+        if(App.gestionnaire.chercherClientParEmail(courriel) == null){
             errorText.setText(errorText.getText() + "\n- Cet email est déja existant..");
         }
         
