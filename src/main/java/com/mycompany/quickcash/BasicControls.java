@@ -89,5 +89,19 @@ public class BasicControls {
             System.exit(1);
         }
     }
+  
+    /**
+     * methode pour creer un popp de type Alert,  de n'importe quel type
+     * @param title
+     * @param content
+     * @param type 
+     */
+    public static void popUp(String title, String content, Alert.AlertType type){
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setContentText(content);
+  
+        alert.showAndWait();
+    }
     
 }

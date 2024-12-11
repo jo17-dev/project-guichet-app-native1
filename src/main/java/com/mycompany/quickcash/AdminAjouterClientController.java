@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -105,13 +106,17 @@ public class AdminAjouterClientController implements Initializable {
         courrielEntry.setText("");
         telephoneEntry.setText("");
         nipEntry.setText("");
+        errorText.setText("");
         
         generatedClientCode.setText(String.valueOf(backend.Client.getNbreClients()));
-        
         try{
             App.setRoot("adminListeClients", App.stageConnexionAdmin.getScene());
         }catch(IOException ioe){
             System.out.println("Imposssible de recharger la page de liste des clients.. mais pas grave ahahah");
         }
+        
+       // on ferme la petite fenetre et on affiche le message de confirmation
+       App.toggleStage("adminAjouterClient");
+       BasicControls.popUp("Operation reussie", "Et Hop ! un nouveau client ajouté", Alert.AlertType.CONFIRMATION);
     }
 }

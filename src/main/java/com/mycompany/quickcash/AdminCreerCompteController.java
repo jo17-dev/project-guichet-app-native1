@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -80,9 +81,20 @@ public class AdminCreerCompteController implements Initializable {
         }
         
         // normalement il n'y pas d'erreur à partir d'ici
-        errorText.setText("");
         System.out.println("pas d'erreur... tout est correct");
         App.gestionnaire.creerCompte(backend.Compte.getNbreComptes(),clientCible.getCodeClient() , 0, 1000, 1000, (typeCompteEntry.getValue().toString().toLowerCase()));
+        
+        //on reinitialise tous les champs
+        generatedCompteCode.setText(String.valueOf(backend.Compte.getNbreComptes()));
+        errorText.setText("");
+        emailEntry.setText("");
+        
+        // On fait le message de confirmation et on sort de la fenêtre
+        
+        App.toggleStage("adminCreerCompte");
+        BasicControls.popUp("Opération reussie", "La creation du compte pour le client est faite", Alert.AlertType.CONFIRMATION);
+        
+        
     }
     
     @FXML
