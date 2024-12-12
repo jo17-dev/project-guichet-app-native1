@@ -66,6 +66,7 @@ public class BasicControls {
     
     @FXML
     public void preleverInteret(){
+        App.gestionnaire.payerInterets();
         System.out.println("___ preleverment interetà (VUE)");
     }
         

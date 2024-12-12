@@ -82,7 +82,7 @@ public class AdminCreerCompteController implements Initializable {
         
         // normalement il n'y pas d'erreur à partir d'ici
         System.out.println("pas d'erreur... tout est correct");
-        App.gestionnaire.creerCompte(backend.Compte.getNbreComptes(),clientCible.getCodeClient() , 0, 1000, 1000, (typeCompteEntry.getValue().toString().toLowerCase()));
+        App.gestionnaire.creerCompte(backend.Compte.getNbreComptes(),clientCible.getCodeClient() , 0, (typeCompteEntry.getValue().toString().toLowerCase()));
         
         //on reinitialise tous les champs
         generatedCompteCode.setText(String.valueOf(backend.Compte.getNbreComptes()));

@@ -112,7 +112,7 @@ public class App extends Application {
         // compte client de la banque:
         Client compteClientDeLaBanqueActuelle = new Client( Character.toString((char) Client.getNbreClients()), "quickCash", "", "tel-banque", "banque@couriel.com", 0000);
         // compte de la banque actuelle (quickCash)
-        Compte compte = new Banque(Compte.getNbreComptes(), compteClientDeLaBanqueActuelle.getCodeClient(), 20000, 20000,1000, 20000, 20000 );
+        Compte compte = new Banque(Compte.getNbreComptes(), compteClientDeLaBanqueActuelle.getCodeClient(), 20000 );
         Client admin;
         
         ArrayList<Cheque> cheques = new ArrayList<>();
@@ -145,9 +145,7 @@ public class App extends Application {
                 new Cheque(
                      Compte.getNbreComptes(),
                      client.getCodeClient(),
-                     120,
-                     1000,
-                     1000
+                     120
                 )
            );
            
@@ -156,10 +154,7 @@ public class App extends Application {
                 new Epargne(                     
                     Compte.getNbreComptes(),
                     client.getCodeClient(),
-                    120,
-                    1000,
-                    1000,
-                    1.25
+                    120
                 )
             );
        }
