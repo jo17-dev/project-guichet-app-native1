@@ -164,15 +164,17 @@ public abstract class ElementListe extends GridPane {
         super();
         cible = target;
         int nombreDivisions = 0;
-        
+       
+        if(target != null){
+                    
         
         // creer les différents champs 
         // TODO à modifier par les donnés de target
-        super.add(new Label("001"), 0, 0);
-        super.add(new Label("dépot"), 1, 0);
-        super.add(new Label("Non renseigné"), 2, 0);
-        super.add(new Label("Compte #101"), 3, 0);
-        super.add(new Label("55 $"), 4, 0);
+        super.add(new Label(String.valueOf(target.getNumeroTransaction())), 0, 0);
+        super.add(new Label(target.getType()), 1, 0);
+        super.add(new Label(String.valueOf(target.getNumeroCompteDepart())  ), 2, 0);
+        super.add(new Label("Compte #" + String.valueOf(target.getNumeroCompteDestination()) ), 3, 0);
+        super.add(new Label(String.valueOf(target.getMontant())+" $"), 4, 0);
         
         nombreDivisions = super.getChildren().size();
         
@@ -188,6 +190,8 @@ public abstract class ElementListe extends GridPane {
         }
         
         GridPane.setHalignment(super.getChildren().get(nombreDivisions-1) , HPos.CENTER);
+        }
+
     }
     
     public Object getTarget(){

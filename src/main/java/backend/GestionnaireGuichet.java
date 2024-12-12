@@ -65,7 +65,7 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){
             if(codeClient.equals(item.getCodeClient())){
                 item.depot(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "dépot"));
                 break;
             }
         }

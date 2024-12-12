@@ -65,9 +65,10 @@ public class BasicControls {
     }
     
     @FXML
-    public void preleverInteret(){
+    public void payerInteret(){
+        System.out.println("___ paiement interet (VUE)");
         App.gestionnaire.payerInterets();
-        System.out.println("___ preleverment interetà (VUE)");
+        popUp("Opération reussie", "Paiement des interets reussi", Alert.AlertType.INFORMATION);
     }
         
     @FXML

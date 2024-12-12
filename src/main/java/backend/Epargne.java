@@ -9,8 +9,14 @@ public class Epargne extends Compte {
 
     // paie les interets et retourne le montant de l'interet ( de base pour logger dans les transactions)
     public double paiementInteret(){
-        // retrait(getSolde() * tauxInteret);
-        double montantInteret = getSolde()*tauxInteret/100;
+        
+        double  montantInteret = (getSolde()*tauxInteret)/100;
+        // on calcule le montant des intéret. je fais toutes ses opérations pour avoir un nombre à deux chiffre après la virgule..
+        montantInteret = montantInteret*100;
+        montantInteret = (int)montantInteret;
+        montantInteret = montantInteret/100;
+        
+        // On remplace le montant par celui souhaité
         setSolde(getSolde()+ montantInteret);
         
         return montantInteret;
