@@ -7,6 +7,7 @@ import backend.Epargne;
 import backend.Hypothecaire;
 import backend.Marge;
 import backend.Transaction;
+import com.mycompany.quickcash.App;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -116,7 +117,7 @@ public abstract class ElementListe extends GridPane {
         super.add(new Label("Solde: "+ target.getSolde() + " $"), 1, 0);
 
         super.add(boutonVoir, 2, 0);
-        if(typeCompte.equals("hypothecaire")){
+        if(typeCompte.equals("hypothecaire") && (App.loggedUser.userRole == Client.USER_ROLE.ADMIN)){
             super.add(boutonPrelever, 3, 0);
 //            nombreDivisions = 4;
         }else{

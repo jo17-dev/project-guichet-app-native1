@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainContainer" prefHeight="450.0" prefWidth="720.0" style="-fx-background-color: D4D4D4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.ClientAcceuilController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="720.0" style="-fx-background-color: D4D4D4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.ClientAcceuilController">
    <children>
       <HBox alignment="CENTER_LEFT" layoutX="11.0" layoutY="11.0" prefHeight="37.0" prefWidth="263.0" spacing="14.0">
          <children>
@@ -80,17 +80,17 @@
             </ImageView>
          </children>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="274.0" layoutY="7.0" prefHeight="45.0" prefWidth="165.0" text="Bonjour," textAlignment="CENTER" textFill="#2b3385">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="274.0" layoutY="7.0" prefHeight="45.0" prefWidth="165.0" text="Bonjour, User" textAlignment="CENTER" textFill="#2b3385">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="155.0" prefHeight="209.0" prefWidth="468.0" style="-fx-background-color: #D4D4D4;">
+      <ScrollPane fitToWidth="true" layoutX="14.0" layoutY="155.0" prefHeight="209.0" prefWidth="406.0" style="-fx-background-color: #D4D4D4;">
          <content>
-            <VBox fx:id="itemContainer" alignment="TOP_CENTER" prefHeight="208.0" prefWidth="419.0" spacing="5.0" style="-fx-background-color: #D4D4D4;" />
+            <VBox alignment="CENTER" prefHeight="208.0" prefWidth="391.0" spacing="5.0" style="-fx-background-color: #D4D4D4;" />
          </content>
       </ScrollPane>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="66.0" prefHeight="45.0" prefWidth="165.0" text="Comptes Bancaires" textAlignment="CENTER" textFill="#2b3385">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="66.0" prefHeight="45.0" prefWidth="222.0" text="Historique des transactions" textAlignment="CENTER" textFill="#2b3385">
          <font>
             <Font size="18.0" />
          </font>
@@ -100,16 +100,11 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="532.0" layoutY="120.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Historique des transactions" textFill="WHITE" />
-      <Button layoutX="533.0" layoutY="158.0" mnemonicParsing="false" onAction="#faireTransfertComptes" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Transfert entre comptes" textFill="WHITE" />
-      <Button layoutX="533.0" layoutY="196.0" mnemonicParsing="false" onAction="#fairePaiementFacture" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Payer une facture" textFill="WHITE" />
-      <Button layoutX="532.0" layoutY="234.0" mnemonicParsing="false" onAction="#faireDepot" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Faire un dépot" textFill="WHITE" />
-      <Button layoutX="532.0" layoutY="273.0" mnemonicParsing="false" onAction="#faireRetrait" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Faire un retrait" textFill="WHITE" />
+      <Button layoutX="532.0" layoutY="120.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Comptes Bancaires" textFill="WHITE" />
+      <Button layoutX="533.0" layoutY="158.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Transfert entre comptes" textFill="WHITE" />
+      <Button layoutX="533.0" layoutY="196.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Payer une facture" textFill="WHITE" />
+      <Button layoutX="532.0" layoutY="234.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Faire un dépot" textFill="WHITE" />
+      <Button layoutX="532.0" layoutY="273.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Faire un retrait" textFill="WHITE" />
       <Button layoutX="533.0" layoutY="411.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="165.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
-      <Label fx:id="textUser" alignment="CENTER" contentDisplay="CENTER" layoutX="274.0" layoutY="52.0" prefHeight="45.0" prefWidth="165.0" textAlignment="CENTER" textFill="#2b3385">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
