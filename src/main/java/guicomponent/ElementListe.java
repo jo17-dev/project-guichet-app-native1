@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
  * c'est une espèce d'observable bien designé et réutilisable hahaha
  * 
  * ---- utilisation:
- * juste l'instancier et donner le produit en parametre
+ * juste l'instancier et donner une instance de la classe en parametre
  * On vas avoir un constructeur par affichage et donc par type d'object
  */
 public abstract class ElementListe extends GridPane {

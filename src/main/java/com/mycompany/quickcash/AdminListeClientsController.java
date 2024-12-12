@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 /**
@@ -21,7 +22,7 @@ import javafx.scene.layout.VBox;
 public class AdminListeClientsController extends BasicControls implements Initializable {
     
     @FXML VBox itemContainer;
-    
+    @FXML private Label username;
     
     private ArrayList<Client> listeClients;
     /**
@@ -35,6 +36,7 @@ public class AdminListeClientsController extends BasicControls implements Initia
        
        // 2nd etape: affichage des données dans la vue
        for(Client item : listeClients){
+           username.setText(App.loggedUser.getNom() + " " + App.loggedUser.getPrenom());
            // ici, on vas afficher tous les compte client/admin sauf pour celui qui est actuelement connecté:
            if(item.equals(App.loggedUser)){
                continue;

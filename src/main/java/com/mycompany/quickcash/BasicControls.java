@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 public class BasicControls {
     @FXML AnchorPane mainContainer;
     public BasicControls(){
-        
     }
     
     

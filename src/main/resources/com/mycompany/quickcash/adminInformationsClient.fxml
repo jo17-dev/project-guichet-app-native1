@@ -160,7 +160,7 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Label layoutX="6.0" layoutY="386.0" prefHeight="17.0" prefWidth="125.0" text="Joël Bertrand" textFill="#2b3385" />
+      <Label fx:id="username" layoutX="6.0" layoutY="386.0" prefHeight="17.0" prefWidth="125.0" text="Joël Bertrand" textFill="#2b3385" />
       <Button fx:id="deconnexion" layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
    </children>
 </AnchorPane>
