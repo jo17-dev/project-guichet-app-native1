@@ -4,16 +4,14 @@ public class Compte {
     private int numeroCompte; // numeto de ce compte parmis les autres comptes
     private String codeClient; // code Client du propriétaire du compte
     private double soldeCompte; // solde courant du compte
-    private double retraitMaximum; // retraitMaximum d'un compte par transaction ( 1000 $)
-    private double montantTransfertMaximum; // montant de transfert max d'un compte à un autre: 1000$ ? nécéssaire ?
+    private final double retraitMaximum = 1000; // retraitMaximum d'un compte par transaction ( 1000 $)
+    private final double montantTransfertMaximum = 1000; // montant de transfert max d'un compte à un autre: 1000$ ? nécéssaire ?
     private static int nbreComptes = 0; // nombre de comptes présents
 
-    public Compte(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum) {
+    public Compte(int numeroCompte, String codeClient, double soldeCompte) {
         this.numeroCompte = numeroCompte;
         this.codeClient = codeClient;
         this.soldeCompte = soldeCompte;
-        this.retraitMaximum = retraitMaximum; // doit forcement etre initialisé avec 1000 ici
-        this.montantTransfertMaximum = montantTransfertMaximum;
         nbreComptes++;
     }
 

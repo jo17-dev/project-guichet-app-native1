@@ -31,6 +31,7 @@ public class AdminInformationsClientController extends BasicControls implements 
     @FXML private Label champTelephone;
     
     public static Client cible = null;
+    @FXML private Label username;
 
     /**
      * Initializes the controller class.
@@ -44,6 +45,7 @@ public class AdminInformationsClientController extends BasicControls implements 
         // client cible
         System.out.println("la page info client est montée");
         if(cible != null){
+            username.setText(App.loggedUser.getNom() + " " + App.loggedUser.getPrenom());
             champNom.setText(cible.getNom());
             champPrenom.setText(cible.getPrenom());
             champCourriel.setText(cible.getCouriel());

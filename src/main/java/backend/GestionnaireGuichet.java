@@ -65,11 +65,20 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){
             if(codeClient.equals(item.getCodeClient())){
                 item.depot(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "dépot"));
                 break;
             }
         }
     }
+    
+  public void payerInterets(){
+      for(Epargne item : comptesEpargne){
+        if(item.getSolde() > 0){
+            double montantPaye = item.paiementInteret();
+            transactions.add(new Transaction(Transaction.nbreTransaction, montantPaye, banque, item, "paiement" ));
+        }
+      }
+  }
 
     
     public void depotEpargne(String codeClient, int numeroCompte ,double montant){
@@ -157,28 +166,28 @@ public class GestionnaireGuichet {
         Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, estAdmin);
         clients.add(tmp);
         // ensuite on le crée son compte obligatoire: (cheque)
-        creerCompte(Compte.getNbreComptes(), codeClient, 0, 1000, 1000);
+        creerCompte(Compte.getNbreComptes(), codeClient, 0);
     }
 
     // creer un Compte de n'importe quel type
-    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum){
-        Cheque tmp = new Cheque(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
+    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte){
+        Cheque tmp = new Cheque(numeroCompte, codeClient, soldeCompte);
         comptesCheque.add(tmp);
     }
     
-    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum, String type){
+    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte, String type){
         switch(type){
             case "cheque":
-                comptesCheque.add(new Cheque(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum));
+                comptesCheque.add(new Cheque(numeroCompte, codeClient, soldeCompte));
                 break;
             case "epargne":
-                comptesEpargne.add(new Epargne(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum, 1.25));
+                comptesEpargne.add(new Epargne(numeroCompte, codeClient, soldeCompte));
                 break;
             case "marge":
-                comptesMarge.add(new Marge(1.25 ,numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum));
+                comptesMarge.add(new Marge(1.25 ,numeroCompte, codeClient, soldeCompte));
                 break;
             case "hypothecaire":
-                comHypothecaire.add(new Hypothecaire(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum));
+                comHypothecaire.add(new Hypothecaire(numeroCompte, codeClient, soldeCompte));
                 break;
             default:
                 System.out.println("On a pas pu creer de compte .. le type de corresponds pas..");
@@ -205,8 +214,17 @@ public class GestionnaireGuichet {
                     }
                     System.out.println("On a pas trouve de compte marge à votre nom");
                     return ;
+                }else{
+                    item.setSolde(item.getSolde() - montantAPrelever);
+                    System.out.println("prelevement reussi.. le solde du compte marge n'as pas été touché");
                 }
             }
+        }
+    }
+    
+    public void augmenterSoldeMarges(){
+        for(Marge item: comptesMarge){
+            item.augumenterSoldeMarge();
         }
     }
     
