@@ -27,10 +27,14 @@ public class App extends Application {
     static Stage stageConnexionAdmin;
     static Stage stageAdminCreerClient;
     static Stage stageAdminCreerCompte;
+    static Stage stageClientRetraitArgent;
+    static Stage stageClientDepotArgent;
+    static Stage stageClientTransfertComptes;
+    static Stage stageClientPayerFacture;
     static Stage stageAdminRemplirGuichet;
     protected static GestionnaireGuichet gestionnaire;
     
-    protected static Client loggedUser = null;
+    public static Client loggedUser = null;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,10 +45,6 @@ public class App extends Application {
         
         
         //2e etape:initialiser les vues et afficher les parties login de client et admin
-        sceneConnexionClient = new Scene(loadFXML("clientLogin"), 720, 450);
-        stage.setScene(sceneConnexionClient);
-        stage.show();
-        
         
         stageConnexionAdmin = new Stage();
         sceneConnexionClient = new Scene(loadFXML("adminLogin"), 720, 450);
@@ -54,6 +54,19 @@ public class App extends Application {
         
         stageAdminCreerClient = new Stage(); // le reste des choses vont êtres faites lors du click sur le bouton pour économiser les ressources..
         stageAdminCreerClient.setScene(new Scene(loadFXML("adminAjouterClient"),330, 462));
+        
+        stageClientRetraitArgent = new Stage();
+        stageClientRetraitArgent.setScene(new Scene(loadFXML("clientRetraitArgent"), 434, 277));
+        
+        stageClientDepotArgent = new Stage();
+        stageClientDepotArgent.setScene(new Scene(loadFXML("clientDepotArgent"), 434, 277));
+        
+        stageClientTransfertComptes = new Stage();
+        stageClientTransfertComptes.setScene(new Scene(loadFXML("clientTransfertComptes"), 434, 308));
+        
+        stageClientPayerFacture = new Stage();
+        stageClientPayerFacture.setScene(new Scene(loadFXML("clientPayerFacture"), 434, 277));
+        
         
         stageAdminCreerCompte = new Stage();
         stageAdminCreerCompte.setScene(new Scene(loadFXML("adminCreerCompte"), 333, 321));
@@ -84,6 +97,18 @@ public class App extends Application {
                 break;
             case "adminCreerCompte":
                 targetStage = stageAdminCreerCompte;
+                break;
+            case "clientRetraitArgent":
+                targetStage = stageClientRetraitArgent;
+                break;
+            case "clientDepotArgent":
+                targetStage = stageClientDepotArgent;
+                break;
+            case "clientTransfertComptes":
+                targetStage = stageClientTransfertComptes;
+                break;
+            case "clientPayerFacture":
+                targetStage = stageClientPayerFacture;
                 break;
             case "adminRemplirGuichet":
                 targetStage = stageAdminRemplirGuichet;

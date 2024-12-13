@@ -34,7 +34,29 @@ public class BasicControls {
         System.out.println("Ouverture de la page de creation de compte bancaire");
         App.toggleStage("adminCreerCompte");
     }
+    @FXML
+    public void faireRetrait(){
+        System.out.println("Ouverture de la page de retrait");
+        App.toggleStage("clientRetraitArgent");
+    }
     
+    @FXML
+    public void faireDepot(){
+        System.out.println("Ouverture de la page de depot");
+        App.toggleStage("clientDepotArgent");
+    }
+    
+    @FXML
+    public void faireTransfertComptes() {
+        System.out.println("Ouverture de la page de transferts de compte");
+        App.toggleStage("clientTransfertComptes");
+    }
+    
+    @FXML
+    public void fairePaiementFacture() {
+        System.out.println("Ouverture de la page de paiement de facture");
+        App.toggleStage("clientPayerFacture");
+    }
     
     @FXML
     public void listeClient(){
