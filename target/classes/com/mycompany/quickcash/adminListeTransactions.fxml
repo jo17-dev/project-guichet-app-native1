@@ -125,5 +125,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
+      <Button layoutX="6.0" layoutY="236.0" mnemonicParsing="false" onAction="#preleverDeMarge" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Prélèver (5% Marge)" textFill="WHITE" />
    </children>
 </AnchorPane>

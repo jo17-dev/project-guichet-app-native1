@@ -188,7 +188,7 @@ public class GestionnaireGuichet {
                 comptesEpargne.add(new Epargne(numeroCompte, codeClient, soldeCompte));
                 break;
             case "marge":
-                comptesMarge.add(new Marge(1.25 ,numeroCompte, codeClient, soldeCompte));
+                comptesMarge.add(new Marge(numeroCompte, codeClient, soldeCompte));
                 break;
             case "hypothecaire":
                 comHypothecaire.add(new Hypothecaire(numeroCompte, codeClient, soldeCompte));
