@@ -41,9 +41,7 @@ public class AdminLoginController implements Initializable {
             }
         }catch(Exception ex){
             System.out.println("la sasie des entrées est non valide");
-            alert.setTitle("Saisies non conformes");
-            alert.setContentText("Les champs doivent être non vides et vous devez utiliser uniquement des chiffres !");
-            alert.showAndWait();
+            BasicControls.popUp("Saisie non conforme", "Les champs doivent être non vides et vous devez utiliser uniquement des chiffres !", Alert.AlertType.ERROR);
             return;
         }
         App.loggedUser = App.gestionnaire.validerUtilisateur(codeClient.getText(), Integer.parseInt(nipEntry.getText()));
@@ -64,7 +62,14 @@ public class AdminLoginController implements Initializable {
             System.out.println("Le user est un client");
         }
         
-        // on le logge dans le compte admin
+        // si le user est bloqué, on ne le connecte pas
+        if(App.gestionnaire.estBloque(App.loggedUser)){
+            App.loggedUser = null;
+            BasicControls.popUp("Impossible de se connecter pour le moment", "Vous avez été bloqué par un administrateur", Alert.AlertType.INFORMATION);
+            return;
+        }
+        
+        // on met à jour son statut
         App.loggedUser.userStatus = USER_STATUS.LOGGED_IN;
         
         try {

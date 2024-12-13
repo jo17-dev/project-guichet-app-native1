@@ -114,7 +114,7 @@
       <Label layoutX="566.0" layoutY="80.0" text="Actions" />
       <ScrollPane fitToWidth="true" layoutX="149.0" layoutY="106.0" prefHeight="332.0" prefWidth="567.0" style="-fx-background-color: #D4D4D4;">
          <content>
-            <VBox fx:id="itemContainer" alignment="CENTER" prefHeight="339.0" prefWidth="565.0" spacing="5.0" style="-fx-background-color: #D4D4D4;" />
+            <VBox fx:id="itemContainer" alignment="TOP_CENTER" prefHeight="339.0" prefWidth="565.0" spacing="5.0" style="-fx-background-color: #D4D4D4;" />
          </content>
       </ScrollPane>
       <Button layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
