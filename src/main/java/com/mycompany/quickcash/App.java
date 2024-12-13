@@ -27,6 +27,7 @@ public class App extends Application {
     static Stage stageConnexionAdmin;
     static Stage stageAdminCreerClient;
     static Stage stageAdminCreerCompte;
+    static Stage stageAdminRemplirGuichet;
     protected static GestionnaireGuichet gestionnaire;
     
     protected static Client loggedUser = null;
@@ -56,6 +57,9 @@ public class App extends Application {
         
         stageAdminCreerCompte = new Stage();
         stageAdminCreerCompte.setScene(new Scene(loadFXML("adminCreerCompte"), 333, 321));
+        
+        stageAdminRemplirGuichet = new Stage();
+        stageAdminRemplirGuichet.setScene(new Scene(loadFXML("adminRemplirGuichet"), 332, 277));
     }
     
     public static void setRoot(String fxml, Scene target) throws IOException {
@@ -80,6 +84,9 @@ public class App extends Application {
                 break;
             case "adminCreerCompte":
                 targetStage = stageAdminCreerCompte;
+                break;
+            case "adminRemplirGuichet":
+                targetStage = stageAdminRemplirGuichet;
                 break;
             default:
                 System.out.println("Aucune fenetre n'as pu être affichée");
@@ -112,7 +119,7 @@ public class App extends Application {
         // compte client de la banque:
         Client compteClientDeLaBanqueActuelle = new Client( Character.toString((char) Client.getNbreClients()), "quickCash", "", "tel-banque", "banque@couriel.com", 0000);
         // compte de la banque actuelle (quickCash)
-        Compte compte = new Banque(Compte.getNbreComptes(), compteClientDeLaBanqueActuelle.getCodeClient(), 20000 );
+        Compte compte = new Banque(Compte.getNbreComptes(), compteClientDeLaBanqueActuelle.getCodeClient(), 15000 );
         Client admin;
         
         ArrayList<Cheque> cheques = new ArrayList<>();

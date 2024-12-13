@@ -48,6 +48,10 @@ public class GestionnaireGuichet {
             }
         }
     }
+    
+    public Compte getCompteBancaire(){
+        return banque;
+    }
 
     public void retraitEpargne(String codeClient, int numeroCompte ,double montant){
         for(Epargne item : comptesEpargne){

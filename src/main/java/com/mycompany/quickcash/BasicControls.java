@@ -62,6 +62,7 @@ public class BasicControls {
     @FXML
     public void remplirGuichet(){
         System.out.println("___ remplissage de guichet (VUE)");
+        App.toggleStage("adminRemplirGuichet");
     }
     
     @FXML
