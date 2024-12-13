@@ -120,6 +120,14 @@ public class BasicControls {
             System.exit(1);
         }
     }
+    
+    @FXML
+    public void fermerGuichet(){
+        System.out.println("Fermeture du guichet...");
+        App.loggedUser = null;
+        popUp("Fermeture du guichet", "Le guichet vas se fermer.. ", Alert.AlertType.CONFIRMATION);
+        System.exit(0);
+    }
   
     /**
      * methode pour creer un popp de type Alert,  de n'importe quel type

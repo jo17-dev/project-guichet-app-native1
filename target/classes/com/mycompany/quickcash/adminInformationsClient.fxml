@@ -160,8 +160,8 @@
             </VBox>
          </content>
       </ScrollPane>
-      <Label fx:id="username" layoutX="6.0" layoutY="386.0" prefHeight="17.0" prefWidth="125.0" text="Joël Bertrand" textFill="#2b3385" />
-      <Button fx:id="deconnexion" layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
+      <Label fx:id="username" layoutX="6.0" layoutY="361.0" prefHeight="17.0" prefWidth="125.0" text="Joël Bertrand" textFill="#2b3385" />
+      <Button layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#fermerGuichet" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #942F2F;" text="Fermer le guichet" textFill="WHITE" />
       <Label layoutX="7.0" layoutY="267.0" prefHeight="17.0" prefWidth="36.0" text="Cash:" />
       <Label fx:id="cashRemaining" layoutX="43.0" layoutY="267.0" prefHeight="17.0" prefWidth="88.0" text="20000" textFill="#2b3385">
          <font>
@@ -169,5 +169,6 @@
          </font>
       </Label>
       <Button layoutX="6.0" layoutY="236.0" mnemonicParsing="false" onAction="#preleverDeMarge" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Prélever (5% Marge)" textFill="WHITE" />
+      <Button fx:id="deconnexion1" layoutX="6.0" layoutY="378.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
    </children>
 </AnchorPane>
