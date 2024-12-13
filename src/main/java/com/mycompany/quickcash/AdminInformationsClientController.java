@@ -29,14 +29,17 @@ public class AdminInformationsClientController extends BasicControls implements 
     @FXML private Label champPrenom;
     @FXML private Label champCourriel;
     @FXML private Label champTelephone;
+    @FXML private Label cashRemaining;
     
     public static Client cible = null;
+    @FXML private Label username;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cashRemaining.setText(String.valueOf(App.gestionnaire.getCompteBancaire().getSolde()));
         // step 1 récupérer le client cible et ses comptes:
         ArrayList<Compte> comptesClient; // designe l'ensemble des comptes aapartenant au client cible
         double retraitMaximum = 20000; // ceci est la quantitée d'argent qu'il y a en papier dans le guichet
@@ -44,6 +47,7 @@ public class AdminInformationsClientController extends BasicControls implements 
         // client cible
         System.out.println("la page info client est montée");
         if(cible != null){
+            username.setText(App.loggedUser.getNom() + " " + App.loggedUser.getPrenom());
             champNom.setText(cible.getNom());
             champPrenom.setText(cible.getPrenom());
             champCourriel.setText(cible.getCouriel());

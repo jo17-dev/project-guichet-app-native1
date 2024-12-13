@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 /**
@@ -24,6 +25,8 @@ import javafx.scene.layout.VBox;
  */
 public class AdminListeTransactionsController extends BasicControls implements Initializable {
     public static Compte compteTarget;
+    @FXML private Label username;
+    @FXML private Label cashRemaining;
     /**
      * Initializes the controller class.
      */
@@ -31,8 +34,10 @@ public class AdminListeTransactionsController extends BasicControls implements I
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cashRemaining.setText(String.valueOf(App.gestionnaire.getCompteBancaire().getSolde()));
         System.out.println("Page de la liste des transaction - admin initialisée");
         if(compteTarget != null){
+            username.setText(App.loggedUser.getNom() + " " + App.loggedUser.getPrenom());
             // TODO récupérer les transaction du client dans tous ces comptes
             // Pour le moment, on vas juste creer 4 transaction
              ArrayList<Transaction> transactions = App.gestionnaire.getTransactionsParComptes(compteTarget.getNumeroCompte());

@@ -1,30 +1,33 @@
 package backend;
 
 public class Banque extends Compte {
-
-    private double montantMaximum;
-    private double montantRemplissage;
-    private double montantTotal;
+//    private double montantRemplissage; Cette variable ne vas pas être utilisée car super.solde vas remplacer le solde courant
+    private final double montantMaximum = 20000;
+    
 
     // Constructeur
-    public Banque(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum, double montantMaximum, double montantRemplissage) {
-        super(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
-        this.montantMaximum = montantMaximum;
-        this.montantRemplissage = montantRemplissage;
-        this.montantTotal = montantTotal;
+    public Banque(int numeroCompte, String codeClient, double soldeCompte) {
+        super(numeroCompte, codeClient, soldeCompte);
     }
 
     // Remplir Guichet 
-    public void remplirGuichet() {
-        if (montantRemplissage + montantTotal > montantMaximum)  {
+    public void remplirGuichet(double montantRemplissage) throws RemplirGuichetException{
+        
+        if(montantRemplissage< 0){
+            System.out.println("Echec. Le montant doit être négatif");
+            throw new RemplirGuichetException("Echec. Le montant doit ne doit pas être négatif");
+        }else if (getSolde() + montantRemplissage > montantMaximum )  {
             System.out.println("Echec. Le montant dépasse le montant maximum");
-        } else {
-            montantTotal += montantRemplissage;
+            throw new RemplirGuichetException("Echec. Le montant dépasse le montant maximum");
+        }
+        else {
+            setSolde(getSolde()+montantRemplissage);
         }
     }
 
     // toString 
+    @Override
     public String toString() {
-        return "Montant Total : " + montantTotal + "Montant Maximum : " + montantMaximum + ", Montant Remplissage : " + montantRemplissage;
+        return "banque;  Montant Maximum "+ montantMaximum +"Montant Remplissage : " + getSolde();
     }
 }

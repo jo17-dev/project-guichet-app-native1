@@ -48,6 +48,10 @@ public class GestionnaireGuichet {
             }
         }
     }
+    
+    public Compte getCompteBancaire(){
+        return banque;
+    }
 
     public void retraitEpargne(String codeClient, int numeroCompte ,double montant){
         for(Epargne item : comptesEpargne){
@@ -65,11 +69,20 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){
             if(codeClient.equals(item.getCodeClient())){
                 item.depot(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "dépot"));
                 break;
             }
         }
     }
+    
+  public void payerInterets(){
+      for(Epargne item : comptesEpargne){
+        if(item.getSolde() > 0){
+            double montantPaye = item.paiementInteret();
+            transactions.add(new Transaction(Transaction.nbreTransaction, montantPaye, banque, item, "paiement" ));
+        }
+      }
+  }
 
     
     public void depotEpargne(String codeClient, int numeroCompte ,double montant){
@@ -157,13 +170,33 @@ public class GestionnaireGuichet {
         Client tmp = new Client(codeClient, nom, prenom, telephone, courriel, numeroNIP, estAdmin);
         clients.add(tmp);
         // ensuite on le crée son compte obligatoire: (cheque)
-        creerCompte(Compte.getNbreComptes(), codeClient, 0, 1000, 1000);
+        creerCompte(Compte.getNbreComptes(), codeClient, 0);
     }
 
-    // en supposant que c'est une methode admin, le compte crée doit être Cheque tandis que les autres comptes comptes seont crée au login des client eux meme
-    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte, double retraitMaximum, double montantTransfertMaximum){
-        Cheque tmp = new Cheque(numeroCompte, codeClient, soldeCompte, retraitMaximum, montantTransfertMaximum);
+    // creer un Compte de n'importe quel type
+    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte){
+        Cheque tmp = new Cheque(numeroCompte, codeClient, soldeCompte);
         comptesCheque.add(tmp);
+    }
+    
+    public void creerCompte(int numeroCompte, String codeClient, double soldeCompte, String type){
+        switch(type){
+            case "cheque":
+                comptesCheque.add(new Cheque(numeroCompte, codeClient, soldeCompte));
+                break;
+            case "epargne":
+                comptesEpargne.add(new Epargne(numeroCompte, codeClient, soldeCompte));
+                break;
+            case "marge":
+                comptesMarge.add(new Marge(1.25 ,numeroCompte, codeClient, soldeCompte));
+                break;
+            case "hypothecaire":
+                comHypothecaire.add(new Hypothecaire(numeroCompte, codeClient, soldeCompte));
+                break;
+            default:
+                System.out.println("On a pas pu creer de compte .. le type de corresponds pas..");
+                break;
+        }
     }
 
     
@@ -185,8 +218,17 @@ public class GestionnaireGuichet {
                     }
                     System.out.println("On a pas trouve de compte marge à votre nom");
                     return ;
+                }else{
+                    item.setSolde(item.getSolde() - montantAPrelever);
+                    System.out.println("prelevement reussi.. le solde du compte marge n'as pas été touché");
                 }
             }
+        }
+    }
+    
+    public void augmenterSoldeMarges(){
+        for(Marge item: comptesMarge){
+            item.augumenterSoldeMarge();
         }
     }
     
@@ -224,6 +266,19 @@ public class GestionnaireGuichet {
             listeNoireClients.remove(target);
         }
       return false;
+    }
+    /**
+     * check si un client existe via son email
+     * @param email
+     * @return 
+     */
+    public boolean emailExistant(String email){
+        for(Client item : clients){
+            if(item.getCouriel().equals(email)){
+                return true;
+            }
+        }
+        return false;
     }
     
     /**
@@ -309,13 +364,13 @@ public class GestionnaireGuichet {
         return result;
     }
     
-    public boolean courielExistant(String target){
+    public Client chercherClientParEmail(String targetEmail){
         for(Client item : clients){
-            if(item.getCouriel().equals(target)){
-                return true;
+            if(item.getCouriel().equals(targetEmail)){
+                return item;
             }
         }
-        return false;
+        return null;
     }
     
     

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="321.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.AdminCreerCompteController">
+   <children>
+      <VBox alignment="TOP_RIGHT" prefHeight="321.0" prefWidth="333.0" spacing="10.0" style="-fx-background-color: #D4D4D4;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="330.0" style="-fx-background-color: #2B3385;">
+               <children>
+                  <Label text="Creation d'un compte" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label alignment="TOP_LEFT" lineSpacing="2.0" prefHeight="38.0" prefWidth="313.0" text="Remplissez dûment le formulaire. Tous les champs sont obligatoires" wrapText="true">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="20.0" />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="errorText" alignment="TOP_LEFT" prefHeight="41.0" prefWidth="307.0" textFill="#942f2f">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox fx:id="generatedAccountNumber" alignment="CENTER_LEFT" prefHeight="29.0" prefWidth="330.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="165.0" text="identifiant de compte généré: " textFill="#2b3385" />
+                  <Label fx:id="generatedCompteCode" contentDisplay="CENTER" prefHeight="17.0" prefWidth="71.0" style="-fx-font-weight: bold;" text="Non trouvé" textFill="#2b3385" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+            <TextField fx:id="emailEntry" prefHeight="31.0" prefWidth="310.0" promptText="Entrez l'addresse email du destinataire" style="-fx-background-color: whitesmoke;">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <ComboBox fx:id="typeCompteEntry" onAction="#test" prefHeight="25.0" prefWidth="196.0" promptText="Choisissez le type de compte">
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin></ComboBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="330.0" spacing="6.0">
+               <children>
+                  <Button fx:id="annuler_btn" alignment="CENTER" mnemonicParsing="false" onAction="#annuler" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #942F2F; -fx-font-weight: bold;" text="Annuler" textFill="WHITE" />
+                  <Button fx:id="valider_btn" alignment="CENTER" mnemonicParsing="false" onAction="#valider" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #2B3385; -fx-font-weight: bold;" text="Valider" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

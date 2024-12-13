@@ -18,13 +18,26 @@ public class Transaction {
         this.compte = compte;
         this.compteTransfert = compteTransfert;
         this.type = type;
+        nbreTransaction++;
     }
     
-    protected int getNumeroCompteDepart(){
+    public int getNumeroTransaction(){
+        return numeroTransaction;
+    }
+   
+    public String getType(){
+        return type;
+    }
+    
+    public double getMontant(){
+        return montant;
+    }
+    
+    public int getNumeroCompteDepart(){
         return compte.getNumeroCompte();
     }
     
-    protected int getNumeroCompteDestination(){
+    public int getNumeroCompteDestination(){
         return compteTransfert.getNumeroCompte();
     }
 

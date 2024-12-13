@@ -7,6 +7,7 @@ import backend.Epargne;
 import backend.Hypothecaire;
 import backend.Marge;
 import backend.Transaction;
+import com.mycompany.quickcash.App;
 import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,7 +21,7 @@ import javafx.scene.layout.GridPane;
  * c'est une espèce d'observable bien designé et réutilisable hahaha
  * 
  * ---- utilisation:
- * juste l'instancier et donner le produit en parametre
+ * juste l'instancier et donner une instance de la classe en parametre
  * On vas avoir un constructeur par affichage et donc par type d'object
  */
 public abstract class ElementListe extends GridPane {
@@ -116,7 +117,7 @@ public abstract class ElementListe extends GridPane {
         super.add(new Label("Solde: "+ target.getSolde() + " $"), 1, 0);
 
         super.add(boutonVoir, 2, 0);
-        if(typeCompte.equals("hypothecaire")){
+        if(typeCompte.equals("hypothecaire") && (App.loggedUser.userRole == Client.USER_ROLE.ADMIN)){
             super.add(boutonPrelever, 3, 0);
 //            nombreDivisions = 4;
         }else{
@@ -164,15 +165,17 @@ public abstract class ElementListe extends GridPane {
         super();
         cible = target;
         int nombreDivisions = 0;
-        
+       
+        if(target != null){
+                    
         
         // creer les différents champs 
         // TODO à modifier par les donnés de target
-        super.add(new Label("001"), 0, 0);
-        super.add(new Label("dépot"), 1, 0);
-        super.add(new Label("Non renseigné"), 2, 0);
-        super.add(new Label("Compte #101"), 3, 0);
-        super.add(new Label("55 $"), 4, 0);
+        super.add(new Label(String.valueOf(target.getNumeroTransaction())), 0, 0);
+        super.add(new Label(target.getType()), 1, 0);
+        super.add(new Label(String.valueOf(target.getNumeroCompteDepart())  ), 2, 0);
+        super.add(new Label("Compte #" + String.valueOf(target.getNumeroCompteDestination()) ), 3, 0);
+        super.add(new Label(String.valueOf(target.getMontant())+" $"), 4, 0);
         
         nombreDivisions = super.getChildren().size();
         
@@ -188,6 +191,8 @@ public abstract class ElementListe extends GridPane {
         }
         
         GridPane.setHalignment(super.getChildren().get(nombreDivisions-1) , HPos.CENTER);
+        }
+
     }
     
     public Object getTarget(){
