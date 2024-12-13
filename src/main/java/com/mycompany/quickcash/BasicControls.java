@@ -4,10 +4,20 @@
  */
 package com.mycompany.quickcash;
 
+import static com.mycompany.quickcash.App.loadFXML;
+import static com.mycompany.quickcash.App.stageClientDepotArgent;
+import static com.mycompany.quickcash.App.stageClientHistoriqueTransactions;
+import static com.mycompany.quickcash.App.stageClientPayerFacture;
+import static com.mycompany.quickcash.App.stageClientRetraitArgent;
+import static com.mycompany.quickcash.App.stageClientTransfertComptes;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  *
@@ -35,29 +45,63 @@ public class BasicControls {
         App.toggleStage("adminCreerCompte");
     }
     @FXML
-    public void faireRetrait(){
+    public void faireRetrait() {
+        stageClientRetraitArgent = new Stage();
+        try {
+            stageClientRetraitArgent.setScene(new Scene(loadFXML("clientRetraitArgent"), 434, 277));
+        } catch (IOException ex) {
+            Logger.getLogger(BasicControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Ouverture de la page de retrait");
         App.toggleStage("clientRetraitArgent");
     }
     
     @FXML
-    public void faireDepot(){
+    public void faireDepot() {
+        stageClientDepotArgent = new Stage();
+        try {
+            stageClientDepotArgent.setScene(new Scene(loadFXML("clientDepotArgent"), 434, 277));
+        } catch (IOException ex) {
+            Logger.getLogger(BasicControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Ouverture de la page de depot");
         App.toggleStage("clientDepotArgent");
     }
     
     @FXML
     public void faireTransfertComptes() {
+        stageClientTransfertComptes = new Stage();
+        try {
+            stageClientTransfertComptes.setScene(new Scene(loadFXML("clientTransfertComptes"), 434, 308));
+        } catch (IOException ex) {
+            Logger.getLogger(BasicControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Ouverture de la page de transferts de compte");
         App.toggleStage("clientTransfertComptes");
     }
     
     @FXML
     public void fairePaiementFacture() {
+        stageClientPayerFacture = new Stage();
+        try {
+            stageClientPayerFacture.setScene(new Scene(loadFXML("clientPayerFacture"), 434, 277));
+        } catch (IOException ex) {
+            Logger.getLogger(BasicControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Ouverture de la page de paiement de facture");
         App.toggleStage("clientPayerFacture");
     }
     
+    public void afficherTransactions() {
+        stageClientHistoriqueTransactions = new Stage();
+        try {
+            stageClientHistoriqueTransactions.setScene(new Scene(loadFXML("clientHistoriqueTransactions"), 602, 394));
+        } catch (IOException ex) {
+            Logger.getLogger(BasicControls.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Ouverture de la page de paiement de facture");
+        App.toggleStage("clientHistoriqueTransactions");
+    }
     @FXML
     public void listeClient(){
         System.out.println("Redirection vers lite Client");

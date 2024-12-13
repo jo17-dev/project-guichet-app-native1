@@ -31,6 +31,7 @@ public class App extends Application {
     static Stage stageClientDepotArgent;
     static Stage stageClientTransfertComptes;
     static Stage stageClientPayerFacture;
+    static Stage stageClientHistoriqueTransactions;
     static Stage stageAdminRemplirGuichet;
     static Stage stageAdminPreleverMontantHypothequeController;
     protected static GestionnaireGuichet gestionnaire;
@@ -52,22 +53,8 @@ public class App extends Application {
         stageConnexionAdmin.setScene(sceneConnexionClient);
         stageConnexionAdmin.show();
         
-        
         stageAdminCreerClient = new Stage(); // le reste des choses vont êtres faites lors du click sur le bouton pour économiser les ressources..
         stageAdminCreerClient.setScene(new Scene(loadFXML("adminAjouterClient"),330, 462));
-        
-        stageClientRetraitArgent = new Stage();
-        stageClientRetraitArgent.setScene(new Scene(loadFXML("clientRetraitArgent"), 434, 277));
-        
-        stageClientDepotArgent = new Stage();
-        stageClientDepotArgent.setScene(new Scene(loadFXML("clientDepotArgent"), 434, 277));
-        
-        stageClientTransfertComptes = new Stage();
-        stageClientTransfertComptes.setScene(new Scene(loadFXML("clientTransfertComptes"), 434, 308));
-        
-        stageClientPayerFacture = new Stage();
-        stageClientPayerFacture.setScene(new Scene(loadFXML("clientPayerFacture"), 434, 277));
-        
         
         stageAdminCreerCompte = new Stage();
         stageAdminCreerCompte.setScene(new Scene(loadFXML("adminCreerCompte"), 333, 321));
@@ -84,7 +71,7 @@ public class App extends Application {
         target.setRoot(loadFXML(fxml));
     }
 
-    private static Parent loadFXML(String fxml) throws IOException {
+    public static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
@@ -114,6 +101,9 @@ public class App extends Application {
                 break;
             case "clientPayerFacture":
                 targetStage = stageClientPayerFacture;
+                break;
+            case "clientHistoriqueTransactions":
+                targetStage = stageClientHistoriqueTransactions;
                 break;
             case "adminRemplirGuichet":
                 targetStage = stageAdminRemplirGuichet;
