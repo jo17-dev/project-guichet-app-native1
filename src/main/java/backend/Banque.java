@@ -16,7 +16,7 @@ public class Banque extends Compte {
         if(montantRemplissage< 0){
             System.out.println("Echec. Le montant doit être négatif");
             throw new RemplirGuichetException("Echec. Le montant doit ne doit pas être négatif");
-        }else if (getSolde() + montantRemplissage > getmontantTransfertMaximum())  {
+        }else if (getSolde() + montantRemplissage > montantMaximum )  {
             System.out.println("Echec. Le montant dépasse le montant maximum");
             throw new RemplirGuichetException("Echec. Le montant dépasse le montant maximum");
         }

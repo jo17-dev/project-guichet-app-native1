@@ -22,7 +22,8 @@ import javafx.scene.layout.VBox;
 public class AdminListeClientsController extends BasicControls implements Initializable {
     
     @FXML VBox itemContainer;
-    @FXML private Label username;
+    @FXML private Label username;    
+    @FXML private Label cashRemaining;
     
     private ArrayList<Client> listeClients;
     /**
@@ -30,6 +31,7 @@ public class AdminListeClientsController extends BasicControls implements Initia
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cashRemaining.setText(String.valueOf(App.gestionnaire.getCompteBancaire().getSolde()));
         // 1st etape: recupération des données de touts les clients de gestionnaire guichers
        listeClients = App.gestionnaire.getClients();
        

@@ -118,5 +118,11 @@
          </content>
       </ScrollPane>
       <Button layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#logout" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #2B3385;" text="Deconnexion" textFill="WHITE" />
+      <Label layoutX="6.0" layoutY="264.0" prefHeight="17.0" prefWidth="29.0" text="Cash:" />
+      <Label fx:id="cashRemaining" layoutX="44.0" layoutY="264.0" prefHeight="17.0" prefWidth="67.0" text="20000" textFill="#2b3385">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

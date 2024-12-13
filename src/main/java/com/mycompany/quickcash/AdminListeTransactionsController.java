@@ -26,6 +26,7 @@ import javafx.scene.layout.VBox;
 public class AdminListeTransactionsController extends BasicControls implements Initializable {
     public static Compte compteTarget;
     @FXML private Label username;
+    @FXML private Label cashRemaining;
     /**
      * Initializes the controller class.
      */
@@ -33,6 +34,7 @@ public class AdminListeTransactionsController extends BasicControls implements I
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cashRemaining.setText(String.valueOf(App.gestionnaire.getCompteBancaire().getSolde()));
         System.out.println("Page de la liste des transaction - admin initialisée");
         if(compteTarget != null){
             username.setText(App.loggedUser.getNom() + " " + App.loggedUser.getPrenom());
