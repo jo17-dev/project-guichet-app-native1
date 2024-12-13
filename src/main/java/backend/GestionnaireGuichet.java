@@ -200,7 +200,7 @@ public class GestionnaireGuichet {
     }
 
     
-    public void preleverMontantdeHypothecaire(int numeroCompteDepart, int codeClient, double montantAPrelever){
+    public void preleverMontantdeHypothecaire(int numeroCompteDepart, int codeClient, double montantAPrelever) throws PreleverMontantException{
         for(Hypothecaire item : comHypothecaire){
             if(numeroCompteDepart == item.getNumeroCompte()){
                 if(item.getSolde() < montantAPrelever){
@@ -213,12 +213,12 @@ public class GestionnaireGuichet {
                             cpt.augumenterSoldeMarge(montantAPrelever - montantCourant);
                             item.setSolde(0);
                             System.out.println("prelevement du compte marge. réussi. transaction faite");
-                            return ;
+                            throw new PreleverMontantException("Notez qu'une partie de l'argent a été prelevé dans le compte marge du client");
                         }
                     }
                     System.out.println("On a pas trouve de compte marge à votre nom");
-                    return ;
-                }else{
+                    throw new PreleverMontantException("Echec. le virement n'as pas pu être effectué; le solde est insufisant");
+                }else{ // si tout est bon pour le prelevement
                     item.setSolde(item.getSolde() - montantAPrelever);
                     System.out.println("prelevement reussi.. le solde du compte marge n'as pas été touché");
                 }

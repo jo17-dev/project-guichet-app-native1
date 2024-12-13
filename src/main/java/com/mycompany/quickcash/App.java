@@ -32,6 +32,7 @@ public class App extends Application {
     static Stage stageClientTransfertComptes;
     static Stage stageClientPayerFacture;
     static Stage stageAdminRemplirGuichet;
+    static Stage stageAdminPreleverMontantHypothequeController;
     protected static GestionnaireGuichet gestionnaire;
     
     public static Client loggedUser = null;
@@ -73,6 +74,10 @@ public class App extends Application {
         
         stageAdminRemplirGuichet = new Stage();
         stageAdminRemplirGuichet.setScene(new Scene(loadFXML("adminRemplirGuichet"), 332, 277));
+        
+        
+        stageAdminPreleverMontantHypothequeController = new Stage();
+        stageAdminPreleverMontantHypothequeController.setScene(new Scene(loadFXML("adminPreleverMontantHypotheque"), 332, 277));
     }
     
     public static void setRoot(String fxml, Scene target) throws IOException {
@@ -112,6 +117,9 @@ public class App extends Application {
                 break;
             case "adminRemplirGuichet":
                 targetStage = stageAdminRemplirGuichet;
+                break;
+            case "adminPreleverMontantHypotheque":
+                targetStage = stageAdminPreleverMontantHypothequeController;
                 break;
             default:
                 System.out.println("Aucune fenetre n'as pu être affichée");
@@ -188,6 +196,9 @@ public class App extends Application {
                     client.getCodeClient(),
                     120
                 )
+            );
+            hypothecaires.add(
+                new Hypothecaire(Compte.getNbreComptes(), client.getCodeClient(), 10)
             );
        }
        // instantiation de gestionnaireGuichet:

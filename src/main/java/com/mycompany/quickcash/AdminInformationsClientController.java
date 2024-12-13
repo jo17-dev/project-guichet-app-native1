@@ -1,9 +1,7 @@
 package com.mycompany.quickcash;
 
-import backend.Cheque;
 import backend.Client;
 import backend.Compte;
-import backend.Epargne;
 import backend.Hypothecaire;
 import guicomponent.ElementListe;
 import java.io.IOException;
@@ -42,7 +40,6 @@ public class AdminInformationsClientController extends BasicControls implements 
         cashRemaining.setText(String.valueOf(App.gestionnaire.getCompteBancaire().getSolde()));
         // step 1 récupérer le client cible et ses comptes:
         ArrayList<Compte> comptesClient; // designe l'ensemble des comptes aapartenant au client cible
-        double retraitMaximum = 20000; // ceci est la quantitée d'argent qu'il y a en papier dans le guichet
         
         // client cible
         System.out.println("la page info client est montée");
@@ -82,7 +79,13 @@ public class AdminInformationsClientController extends BasicControls implements 
 
                     @Override
                     protected void setAction2() {
-                        System.out.println("Action 2 sur comptes");
+                        System.out.println("tentative de prelevement d' un compte hypothecaire -- ouverture de la page");
+                        if(item instanceof Hypothecaire){
+                            AdminPreleverMontantHypothequeController.setCompteCible( (Hypothecaire) item);
+                            App.toggleStage("adminPreleverMontantHypotheque");
+                        }else{
+                            System.out.println("le compe à prelver n'est pas hypothecaire..");
+                        }
                     }
 
                     @Override
