@@ -33,13 +33,13 @@ public class ClientHistoriqueTransactionsController extends BasicControls implem
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        compteText = "Cheque";
+        compteText = "cheque";
         if(compte instanceof Epargne){
-            compteText = "Epargne";
+            compteText = "epargne";
         }else if(compte instanceof Hypothecaire){
-            compteText = "Hypothecaire";
+            compteText = "hypothecaire";
         }else if(compte instanceof Marge){
-            compteText = "Marge";
+            compteText = "marge";
         }
         if(compte != null) {
             compteText += "("+compte.getNumeroCompte()+")";

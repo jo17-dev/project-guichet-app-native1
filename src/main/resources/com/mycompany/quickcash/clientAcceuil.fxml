@@ -110,5 +110,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="364.0" prefHeight="45.0" prefWidth="497.0" text="Pour voir les transactions d'un compte, cliquer sur le bouton consulter" textAlignment="CENTER" textFill="#2b3385" />
    </children>
 </AnchorPane>

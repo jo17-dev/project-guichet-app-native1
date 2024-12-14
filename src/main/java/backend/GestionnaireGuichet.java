@@ -56,7 +56,7 @@ public class GestionnaireGuichet {
             if(codeClient.equals(item.getCodeClient())){ // on a trouver le compte:
                 if(item.getSolde() >= montant){
                     item.retrait(montant);
-                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, item, "retrait"));
                     banque.setSolde(banque.getSolde()- montant);
                     break;
                 }else{ // si le montant est supérieur au solde on vas chercher s'il un compte marge et tout
@@ -66,12 +66,12 @@ public class GestionnaireGuichet {
                                 double montantRetraitMarge = montant - item.getSolde();
                                 // on vide le compte cheque/epargne
                                 item.retrait(item.getSolde());
-                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, item, "retrait"));
                                 banque.setSolde(banque.getSolde()- montant);
                                 
                                 // on fait le retrait dans le compte marge
                                 marge.retrait(montantRetraitMarge);
-                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, marge, null, "retrait+"));
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, marge, item, "retrait+"));
                                 banque.setSolde(banque.getSolde()- montant);
                                 throw new PreleverMontantException("Operation reussie. Une partie a été déduite du compte marge");
                             }
@@ -113,7 +113,7 @@ public class GestionnaireGuichet {
             if(codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){ // on a trouver le compte:
                 if(item.getSolde() >= montant){
                     item.retrait(montant);
-                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, item, "retrait"));
                     banque.setSolde(banque.getSolde()- montant);
                     break;
                 }else{ // si le montant est supérieur au solde on vas chercher s'il un compte marge et tout
@@ -123,12 +123,12 @@ public class GestionnaireGuichet {
                                 double montantRetraitMarge = montant - item.getSolde();
                                 // on vide le compte cheque/epargne
                                 item.retrait(item.getSolde());
-                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, item, "retrait"));
                                 banque.setSolde(banque.getSolde()- montant);
                                 
                                 // on fait le retrait dans le compte marge
                                 marge.retrait(montantRetraitMarge);
-                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, marge, null, "retrait+"));
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, marge, item, "retrait+"));
                                 banque.setSolde(banque.getSolde()- montant);
                                 throw new PreleverMontantException("Operation reussie. Une partie a été déduite du compte marge");
                             }
@@ -144,7 +144,7 @@ public class GestionnaireGuichet {
         for(Cheque item : comptesCheque){
             if(codeClient.equals(item.getCodeClient())){
                 item.depot(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "dépot"));
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, item, "dépot"));
                 break;
             }
         }
@@ -164,7 +164,7 @@ public class GestionnaireGuichet {
         for(Epargne item : comptesEpargne){
             if( codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){
                 item.depot(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "depot"));
+                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, item, "depot"));
                 break;
             }else{
                 System.out.println("On a pas trouvé le compte");

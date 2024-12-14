@@ -112,4 +112,10 @@ public class ClientRetraitArgentController implements Initializable {
         
     }
     
+    @FXML
+    public void annuler(){
+        System.out.println("Annulation des choses");
+        App.toggleStage("clientRetraitArgent");
+    }
+    
 }
