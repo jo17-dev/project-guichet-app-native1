@@ -39,12 +39,46 @@ public class GestionnaireGuichet {
      * pour ça
      * 1- on cherche le compte cheque coresspondant
      */
-    public void retraitCheque(String codeClient, double montant){
+    public void retraitCheque(String codeClient, double montant)throws PreleverMontantException{
+        if(montant > banque.getSolde()){
+            throw new PreleverMontantException("Le guichet ne contient pas assez d'argent pour votre transaction");
+        }
+        
+        if(montant > banque.getmontantTransfertMaximum()){
+            throw new PreleverMontantException("Echec. Votre limite de retrait par transaction est de: " + banque.getmontantTransfertMaximum() + "$");
+        }
+        
+        if(montant < 0){
+            throw new PreleverMontantException("Veuillez entrer un montant positif");
+        }
+        
         for(Cheque item : comptesCheque){
-            if(codeClient.equals(item.getCodeClient())){
-                item.retrait(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
-                break;
+            if(codeClient.equals(item.getCodeClient())){ // on a trouver le compte:
+                if(item.getSolde() >= montant){
+                    item.retrait(montant);
+                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                    banque.setSolde(banque.getSolde()- montant);
+                    break;
+                }else{ // si le montant est supérieur au solde on vas chercher s'il un compte marge et tout
+                    for(Marge marge : comptesMarge){
+                        if(marge.getCodeClient().equals(codeClient)){
+                            if(marge.getSolde() >= (montant - item.getSolde())){
+                                double montantRetraitMarge = montant - item.getSolde();
+                                // on vide le compte cheque/epargne
+                                item.retrait(item.getSolde());
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                                banque.setSolde(banque.getSolde()- montant);
+                                
+                                // on fait le retrait dans le compte marge
+                                marge.retrait(montantRetraitMarge);
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, marge, null, "retrait+"));
+                                banque.setSolde(banque.getSolde()- montant);
+                                throw new PreleverMontantException("Operation reussie. Une partie a été déduite du compte marge");
+                            }
+                        }
+                    }
+                }  
+
             }
         }
     }
@@ -53,14 +87,55 @@ public class GestionnaireGuichet {
         return banque;
     }
 
-    public void retraitEpargne(String codeClient, int numeroCompte ,double montant){
+    public void retraitEpargne(String codeClient, int numeroCompte ,double montant) throws PreleverMontantException{
+//        for(Epargne item : comptesEpargne){
+//            if( codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){
+//                item.retrait(montant);
+//                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+//                break;
+//            }else{
+//                System.out.println("On a pas trouve le compte correspondant");
+//            }
+//        }
+        if(montant > banque.getSolde()){
+            throw new PreleverMontantException("Le guichet ne contient pas assez d'argent pour votre transaction");
+        }
+        
+        if(montant > banque.getmontantTransfertMaximum()){
+            throw new PreleverMontantException("Echec. Votre limite de retrait par transaction est de: " + banque.getmontantTransfertMaximum() + "$");
+        }
+        
+        if(montant < 0){
+            throw new PreleverMontantException("Veuillez entrer un montant positif");
+        }
+        
         for(Epargne item : comptesEpargne){
-            if( codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){
-                item.retrait(montant);
-                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
-                break;
-            }else{
-                System.out.println("On a pas trouve le compte correspondant");
+            if(codeClient.equals(item.getCodeClient()) && item.getNumeroCompte() == numeroCompte){ // on a trouver le compte:
+                if(item.getSolde() >= montant){
+                    item.retrait(montant);
+                    transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                    banque.setSolde(banque.getSolde()- montant);
+                    break;
+                }else{ // si le montant est supérieur au solde on vas chercher s'il un compte marge et tout
+                    for(Marge marge : comptesMarge){
+                        if(marge.getCodeClient().equals(codeClient)){
+                            if(marge.getSolde() >= (montant - item.getSolde())){
+                                double montantRetraitMarge = montant - item.getSolde();
+                                // on vide le compte cheque/epargne
+                                item.retrait(item.getSolde());
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, item, null, "retrait"));
+                                banque.setSolde(banque.getSolde()- montant);
+                                
+                                // on fait le retrait dans le compte marge
+                                marge.retrait(montantRetraitMarge);
+                                transactions.add( new Transaction(Transaction.nbreTransaction, montant, marge, null, "retrait+"));
+                                banque.setSolde(banque.getSolde()- montant);
+                                throw new PreleverMontantException("Operation reussie. Une partie a été déduite du compte marge");
+                            }
+                        }
+                    }
+                }  
+
             }
         }
     }
@@ -372,6 +447,5 @@ public class GestionnaireGuichet {
         }
         return null;
     }
-    
     
 }

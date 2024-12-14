@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="277.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.ClientCreerCompteController">
+<AnchorPane id="AnchorPane" prefHeight="277.0" prefWidth="434.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.quickcash.ClientRetraitArgentController">
    <children>
       <Pane prefHeight="73.0" prefWidth="434.0" style="-fx-background-color: #2B3385;">
          <children>
@@ -19,9 +19,9 @@
             </Label>
          </children>
       </Pane>
-      <TextField layoutX="14.0" layoutY="166.0" prefHeight="25.0" prefWidth="242.0" promptText="Montant" />
-      <ComboBox layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="242.0" promptText="Compte" />
-      <Button alignment="CENTER" layoutX="342.0" layoutY="232.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #2B3385; -fx-font-weight: bold;" text="Valider" textFill="WHITE" />
+      <TextField fx:id="montantEntry" layoutX="14.0" layoutY="166.0" prefHeight="25.0" prefWidth="242.0" promptText="Montant" />
+      <ComboBox fx:id="comptesEntry" layoutX="14.0" layoutY="114.0" prefHeight="25.0" prefWidth="242.0" promptText="Compte" />
+      <Button fx:id="valider_btn" alignment="CENTER" layoutX="342.0" layoutY="232.0" mnemonicParsing="false" onAction="#valider" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #2B3385; -fx-font-weight: bold;" text="Valider" textFill="WHITE" />
       <Button alignment="CENTER" layoutX="256.0" layoutY="232.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #942F2F; -fx-font-weight: bold;" text="Annuler" textFill="WHITE" />
    </children>
 </AnchorPane>

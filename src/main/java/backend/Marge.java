@@ -30,6 +30,6 @@ public class Marge extends Compte {
     // ToString
     @Override
     public String toString() {
-        return super.toString() + "Taux D'interet : " + tauxInteret;
+        return "Marge " + super.toString() + "Taux D'interet : " + tauxInteret;
     }
 }

@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
  * @author samsl
  */
 public class ClientDepotArgentController implements Initializable {
-
     /**
      * Initializes the controller class.
      */

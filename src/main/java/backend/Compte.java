@@ -15,12 +15,19 @@ public class Compte {
         nbreComptes++;
     }
 
-    public void retrait(double montant){
-        if(montant % 10 == 0 || montant > retraitMaximum){
-            System.out.println("Impossible de retirer les montant de plus de 1000 $");
-        }else if(montant <= soldeCompte){
-            soldeCompte -= montant;
+    public void retrait(double montant) throws PreleverMontantException{
+        System.out.println("__Ancien solde " + getSolde());
+        if(montant > retraitMaximum){
+//            System.out.println("Impossible de retirer les montant de plus de 1000 $");
+            throw new PreleverMontantException("Impossible de retirer les montant de plus de 1000 $");
+        }else if(montant % 10 != 0){
+            throw new PreleverMontantException("Le montant de retrait doit etre un multiple de 10");
         }
+        else if(montant <= soldeCompte){
+            soldeCompte -= montant;
+            System.out.println("effectuasion du resultat");
+        }
+        System.out.println("__Nouveau solde " + getSolde());
     }
 
     public void depot(double montant){
