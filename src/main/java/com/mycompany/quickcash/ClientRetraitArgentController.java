@@ -91,21 +91,21 @@ public class ClientRetraitArgentController implements Initializable {
             return;
         }
         System.out.println("---------- tout est correct");
+        
         if(comptesEntry.getValue().toString().toLowerCase().contains("epargne")){
             try {
-                App.gestionnaire.retraitCheque(App.loggedUser.getCodeClient(), Double.parseDouble(montant));
+                App.gestionnaire.retraitEpargne(App.loggedUser.getCodeClient(), Integer.parseInt(numroCompteCible) ,Double.parseDouble(montant));
                 System.out.println("retrait du compte ");
             } catch (PreleverMontantException ex) {
                 BasicControls.popUp("statut de l'operation", ex.getMessage(), Alert.AlertType.INFORMATION);
             }
-        }else if(comptesEntry.getValue().toString().toLowerCase().contains("cheque")){
+        }else{
+            System.out.println("compte epargne");
             try {
-                App.gestionnaire.retraitEpargne(App.loggedUser.getCodeClient(), Integer.parseInt(numroCompteCible) ,Double.parseDouble(montant));
+                App.gestionnaire.retraitCheque(App.loggedUser.getCodeClient(), Double.parseDouble(montant));
             } catch (PreleverMontantException ex) {
                 BasicControls.popUp("statut de l'operation", ex.getMessage(), Alert.AlertType.INFORMATION);
             }
-        }else{
-            System.out.println("ne contient rien des deux");
         }
         
         BasicControls.popUp("statut de l'operation", "l'operation a reussie", Alert.AlertType.INFORMATION);
