@@ -21,5 +21,9 @@ public class Epargne extends Compte {
         
         return montantInteret;
     }
+    
+    public String toString(){
+        return "Epargne: " + super.toString();
+    }
 
 }

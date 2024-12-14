@@ -132,10 +132,17 @@ public class BasicControls {
     }
     
     @FXML
-    public void payerInteret(){
+    public void payerInteret(){ // payer l'interet à tous les comptes épargnes
         System.out.println("___ paiement interet (VUE)");
         App.gestionnaire.payerInterets();
         popUp("Opération reussie", "Paiement des interets reussi", Alert.AlertType.INFORMATION);
+    }
+    
+    @FXML
+    public void preleverDeMarge(){ // payer l'interet à tous les comptes épargnes
+        System.out.println("___ prelever de la marge (VUE)");
+        App.gestionnaire.augmenterSoldeMarges();
+        popUp("Opération reussie", "Prelèvement de l'argent dans le compte marge reussi", Alert.AlertType.INFORMATION);
     }
         
     @FXML
@@ -156,6 +163,14 @@ public class BasicControls {
             System.out.println(ioe.getMessage());
             System.exit(1);
         }
+    }
+    
+    @FXML
+    public void fermerGuichet(){
+        System.out.println("Fermeture du guichet...");
+        App.loggedUser = null;
+        popUp("Fermeture du guichet", "Le guichet vas se fermer.. ", Alert.AlertType.CONFIRMATION);
+        System.exit(0);
     }
   
     /**

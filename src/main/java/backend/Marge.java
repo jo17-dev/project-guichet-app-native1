@@ -7,7 +7,7 @@ public class Marge extends Compte {
     private final double tauxInteret = 5;
     
     // Constructeur
-    public Marge(double tauxInteret, int numeroCompte, String codeClient, double soldeCompte) {
+    public Marge(int numeroCompte, String codeClient, double soldeCompte) {
         super(numeroCompte, codeClient, soldeCompte);
     }
 
@@ -30,6 +30,6 @@ public class Marge extends Compte {
     // ToString
     @Override
     public String toString() {
-        return super.toString() + "Taux D'interet : " + tauxInteret;
+        return "Marge " + super.toString() + "Taux D'interet : " + tauxInteret;
     }
 }

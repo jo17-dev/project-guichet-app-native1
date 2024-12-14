@@ -5,8 +5,6 @@ import backend.Banque;
 import backend.RemplirGuichetException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -87,7 +85,7 @@ public class AdminRemplirGuichetController implements Initializable {
         //on reinitialise tous les champs
         errorText.setText("");
         montantRemplissageEntry.setText("");
-                
+        // On reload la page        
         // On fait le message de confirmation et on sort de la fenêtre
         
         App.toggleStage("adminRemplirGuichet");

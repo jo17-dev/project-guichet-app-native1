@@ -190,6 +190,11 @@ public class App extends Application {
             hypothecaires.add(
                 new Hypothecaire(Compte.getNbreComptes(), client.getCodeClient(), 10)
             );
+            
+            marges.add(
+                new Marge(Compte.getNbreComptes(), client.getCodeClient(), 45)
+            );
+            
        }
        // instantiation de gestionnaireGuichet:
        gestionnaire = new GestionnaireGuichet(compte, clients, cheques, epargnes, marges, hypothecaires, transactions, soldeCompteCourant);
